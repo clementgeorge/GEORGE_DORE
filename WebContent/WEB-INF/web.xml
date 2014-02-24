@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:web="http://xmlns.jcp.org/xml/ns/javaee">
+  <servlet>
+    <servlet-name>SumServlet</servlet-name>
+    <servlet-class>services.servlet.SumServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CreateUserServlet</servlet-name>
+    <servlet-class>services.servlet.CreateUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateUserServlet</servlet-name>
+    <url-pattern>/createUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SumServlet</servlet-name>
+    <url-pattern>/som</url-pattern>
+  </servlet-mapping>
+</web-app>
