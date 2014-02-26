@@ -1,1 +1,8 @@
-A faire
+TODO
+
+-Creer table clé de session
+-Compléter servlets et services associés aux clés de sessions
+-Creer un attribut TIMESTAMP dans la table login (date de l'inscription)
+-Déplacer les interrogations à la base de donnée dans une classe du package bd (DatabaseTools.java?)
+-Ecrire les tableaux d'utilisations pour chaque servlets (voir TD2)
+-Compléter la classe ServiceTools
