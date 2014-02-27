@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import services.AuthentificationTools;
-import services.ServicesTools;
-
 
 public class SumServlet extends HttpServlet implements Servlet {
 	@Override

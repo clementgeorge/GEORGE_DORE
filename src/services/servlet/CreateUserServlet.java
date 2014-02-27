@@ -2,7 +2,6 @@ package services.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import bd.exceptions.NoSqlConnectionException;
 import services.AuthentificationTools;
 import services.ServicesTools;
 
@@ -34,7 +32,7 @@ public class CreateUserServlet extends HttpServlet {
 				!arguments.containsKey("password") ||
 				!arguments.containsKey("nom") ||
 				!arguments.containsKey("prenom")){
-			out.print(ServicesTools.error("Il manque des informations", 0).toString());
+			out.print(ServicesTools.error("Missing parameter(s) in CreateUserServlet", 0).toString());
 			return;
 			
 		}
@@ -62,14 +60,5 @@ public class CreateUserServlet extends HttpServlet {
 		}catch(JSONException e){
 			
 		}
-		/*catch(SQLException e){
-			JSONObject retour=ServicesTools.error("Probleme avec SQL"+e.getMessage(), 0);
-			out.print(retour.toString());
-		}
-		catch(NoSqlConnectionException e){
-			JSONObject retour=ServicesTools.error("Connexion impossible avec SQL: "+e.getMessage(), 0);
-			out.print(retour.toString());
-		}
-		*/
 	}
 }

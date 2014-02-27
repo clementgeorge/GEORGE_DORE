@@ -25,7 +25,23 @@ public class ServicesTools {
 	}
 
 	public static JSONObject serviceAccepted() {
-		// TODO Auto-generated method stub
-		return null;
+		JSONObject retour=new JSONObject();
+		try {
+			retour.put("state","Service Accepted");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return retour;
+	}
+	
+	public static JSONObject Logout(String key){
+		if(key==null)
+			return ServicesTools.error("Missing the key session parameter, to close ", 0);
+		if(!AuthentificationTools.isSession(key))
+			return ServicesTools.error("The session still not exist, impossible to close", 1);
+		AuthentificationTools.removeSession(key);
+		return ServicesTools.serviceAccepted();
 	}
 }

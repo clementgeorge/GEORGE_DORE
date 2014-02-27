@@ -1,13 +1,7 @@
 package services;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import bd.Database;
 import bd.DatabaseTools;
-import bd.exceptions.NoSqlConnectionException;
 
 public class AuthentificationTools {
 	
@@ -55,12 +49,11 @@ public class AuthentificationTools {
 	}
 
 	public static boolean isSession(String key) {
-		// TODO Auto-generated method stub
-		return false;
+		return DatabaseTools.isSession(key);
 	}
 
 	public static void removeSession(String key) {
-		// TODO Auto-generated method stub
+		DatabaseTools.removeSession(key);
 
 	}
 }
