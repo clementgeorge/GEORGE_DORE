@@ -20,7 +20,7 @@ public class ServicesTools {
 	}
 
 	public static String insertSession(int id_user, boolean b) {
-		// TODO Auto-generated method stub
+		
 		return "";
 	}
 
