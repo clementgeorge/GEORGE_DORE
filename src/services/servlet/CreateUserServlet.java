@@ -62,7 +62,7 @@ public class CreateUserServlet extends HttpServlet {
 		}catch(JSONException e){
 			
 		}
-		catch(SQLException e){
+		/*catch(SQLException e){
 			JSONObject retour=ServicesTools.error("Probleme avec SQL"+e.getMessage(), 0);
 			out.print(retour.toString());
 		}
@@ -70,5 +70,6 @@ public class CreateUserServlet extends HttpServlet {
 			JSONObject retour=ServicesTools.error("Connexion impossible avec SQL: "+e.getMessage(), 0);
 			out.print(retour.toString());
 		}
+		*/
 	}
 }
