@@ -13,8 +13,5 @@ public class DBStatic {
 	public static String mysql_username = "george_dore";
 	public static String mysql_password = "george_dore";
 	
-	public static Connection getMySQLConnection() throws SQLException, ClassNotFoundException {
-		return (Connection) DriverManager.getConnection("jdbc:mysql://132.227.201.129:33306/george_dore,george_dore,george_dore");
-	}
 	
 }

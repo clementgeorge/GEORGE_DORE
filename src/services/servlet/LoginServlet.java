@@ -2,6 +2,8 @@ package services.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import bd.DatabaseTools;
 import services.AuthentificationTools;
 import services.ServicesTools;
 
@@ -43,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 				return;
 			}
 			int id_user=AuthentificationTools.getIDUser(login);
+			DatabaseTools.insertSessionDB();
 			JSONObject retour=new JSONObject();
 			String key=ServicesTools.insertSession(id_user,false);
 			retour.put("key", key);
@@ -50,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 			out.print(retour.toString());
 			
 			
-		}catch(JSONException e){
+		}catch(JSONException | ClassNotFoundException | SQLException e){
 			out.print(ServicesTools.error(e.getMessage(),0).toString());
 		}
 	}

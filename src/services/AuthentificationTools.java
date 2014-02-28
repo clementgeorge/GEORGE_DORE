@@ -1,6 +1,7 @@
 package services;
 
 import java.sql.SQLException;
+
 import bd.DatabaseTools;
 
 public class AuthentificationTools {
@@ -49,11 +50,22 @@ public class AuthentificationTools {
 	}
 
 	public static boolean isSession(String key) {
-		return DatabaseTools.isSession(key);
+		try {
+			return DatabaseTools.isSessionDB(key);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public static void removeSession(String key) {
-		DatabaseTools.removeSession(key);
+		try {
+			DatabaseTools.removeSessionDB(key);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 }
