@@ -15,6 +15,9 @@ import org.json.JSONObject;
 
 
 public class SumServlet extends HttpServlet implements Servlet {
+
+	private static final long serialVersionUID = 20;
+
 	@Override
 	protected void doGet(HttpServletRequest req , HttpServletResponse resp)
 	throws ServletException, IOException{

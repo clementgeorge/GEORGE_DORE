@@ -14,13 +14,11 @@ import org.json.JSONObject;
 import bd.DatabaseTools;
 import services.AuthentificationTools;
 import services.ServicesTools;
+import services.SessionTools;
 
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 12;
-	public LoginServlet(){
-		super();
-	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
@@ -46,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 				return;
 			}
 			int id_user=AuthentificationTools.getIDUser(login);
-			DatabaseTools.insertSessionDB();
+			SessionTools.insertSession();
 			JSONObject retour=new JSONObject();
 			String key=ServicesTools.insertSession(id_user,false);
 			retour.put("key", key);
@@ -54,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			out.print(retour.toString());
 			
 			
-		}catch(JSONException | ClassNotFoundException | SQLException e){
+		}catch(JSONException e){
 			out.print(ServicesTools.error(e.getMessage(),0).toString());
 		}
 	}

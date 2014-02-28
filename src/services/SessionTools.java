@@ -24,4 +24,13 @@ public class SessionTools {
 		}
 
 	}
+
+	public static void insertSession() {
+		try {
+			DatabaseTools.insertSessionDB();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

@@ -2,6 +2,9 @@ package bd;
 
 import java.sql.SQLException;
 
+import bd.mysql.TableLoginTools;
+import bd.mysql.TableSessionTools;
+
 
 public class DatabaseTools {
 
@@ -29,6 +32,11 @@ public class DatabaseTools {
 
 	public static void removeSessionDB(String key) throws ClassNotFoundException, SQLException {
 		TableSessionTools.removeSessionDB(key);
+		
+	}
+
+	public static void insertSessionDB() throws ClassNotFoundException, SQLException {
+		TableSessionTools.insertSessionDB();
 		
 	}
 }

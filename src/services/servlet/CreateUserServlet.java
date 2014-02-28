@@ -13,13 +13,11 @@ import org.json.JSONObject;
 
 import services.AuthentificationTools;
 import services.ServicesTools;
+import services.SessionTools;
 
 public class CreateUserServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 11;
-	public CreateUserServlet(){
-		super();
-	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
@@ -53,6 +51,7 @@ public class CreateUserServlet extends HttpServlet {
 			AuthentificationTools.createUser(login, pass, prenom, nom);
 			JSONObject retour=new JSONObject();
 			int id_user=AuthentificationTools.getIDUser(login);
+			SessionTools.insertSession();
 			String key=ServicesTools.insertSession(id_user,false);
 			retour.put("key", key);
 			out.print(retour.toString());
