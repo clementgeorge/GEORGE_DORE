@@ -39,9 +39,9 @@ public class ServicesTools {
 	public static JSONObject Logout(String key){
 		if(key==null)
 			return ServicesTools.error("Missing the key session parameter, to close ", 0);
-		if(!AuthentificationTools.isSession(key))
+		if(!SessionTools.isSession(key))
 			return ServicesTools.error("The session still not exist, impossible to close", 1);
-		AuthentificationTools.removeSession(key);
+		SessionTools.removeSession(key);
 		return ServicesTools.serviceAccepted();
 	}
 }
