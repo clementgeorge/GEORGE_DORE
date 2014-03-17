@@ -3,6 +3,7 @@ package services;
 import java.sql.SQLException;
 
 import bd.DatabaseTools;
+import bd.MySqlConnexionException;
 
 public class AuthentificationTools {
 	
@@ -10,7 +11,7 @@ public class AuthentificationTools {
 		
 		try {
 			return DatabaseTools.userExistsDB(login);
-		} catch (ClassNotFoundException | SQLException e1) {
+		} catch (SQLException | MySqlConnexionException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return false;
@@ -22,7 +23,7 @@ public class AuthentificationTools {
 
 		try {
 			DatabaseTools.createUserDB(login, password, prenom, nom);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException | MySqlConnexionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -31,7 +32,7 @@ public class AuthentificationTools {
 	public static boolean checkPassword(String login,String password){
 		try {
 			return DatabaseTools.checkPasswordDB(login, password);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException | MySqlConnexionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
@@ -41,7 +42,7 @@ public class AuthentificationTools {
 	public static int getIDUser(String login){
 		try {
 			return DatabaseTools.getIDUserDB(login);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException | MySqlConnexionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return -1;

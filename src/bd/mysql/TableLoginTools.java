@@ -6,10 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import bd.Database;
+import bd.MySqlConnexionException;
 
 public class TableLoginTools {
 
-	public static boolean checkPasswordDB(String login,String password) throws ClassNotFoundException, SQLException{
+	public static boolean checkPasswordDB(String login,String password) throws MySqlConnexionException, SQLException{
 			Connection conn=Database.getMySQLConnection();
 			Statement inst=conn.createStatement();
 			String query="SELECT id FROM login WHERE login=\'"+login+"\' AND password=PASSWORD(\'"+
@@ -31,7 +32,7 @@ public class TableLoginTools {
 			return retour;
 	}
 
-	public static void createUserDB(String login,String password,String prenom, String nom) throws SQLException, ClassNotFoundException{
+	public static void createUserDB(String login,String password,String prenom, String nom) throws SQLException,MySqlConnexionException{
 		Connection conn = Database.getMySQLConnection();
 		Statement inst=conn.createStatement();
 		String query="INSERT INTO login VALUES(null,\'"+login+"\',PASSWORD(\'"+password+"\'),\'"+prenom+
@@ -41,7 +42,7 @@ public class TableLoginTools {
 		conn.close();
 	}
 
-	public static int getIDUserDB(String login) throws ClassNotFoundException, SQLException{
+	public static int getIDUserDB(String login) throws SQLException, MySqlConnexionException{
 			Connection conn=Database.getMySQLConnection();
 			Statement inst=conn.createStatement();
 			String query="SELECT id FROM login WHERE login=\'"+login+"\';";
@@ -62,7 +63,7 @@ public class TableLoginTools {
 			return retour;
 	}
 
-	public static boolean userExistsDB(String login) throws ClassNotFoundException, SQLException{
+	public static boolean userExistsDB(String login) throws SQLException, MySqlConnexionException{
 		Connection conn=Database.getMySQLConnection();
 		Statement inst=conn.createStatement();
 		String query="SELECT id FROM login WHERE login=\'"+login+"\';";	
