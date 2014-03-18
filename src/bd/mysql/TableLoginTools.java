@@ -84,4 +84,25 @@ public class TableLoginTools {
 		return retour;
 	}
 
+	public static String getLogin(int idUser) throws MySqlConnexionException, SQLException {
+		Connection conn=Database.getMySQLConnection();
+		Statement inst=conn.createStatement();
+		String query="SELECT login FROM login WHERE id="+idUser+";";
+		inst.executeQuery(query);
+		ResultSet rs=inst.getResultSet();
+		String retour;
+		
+		if(rs.next()){
+			retour= rs.getString(1);
+		}
+		else{
+			retour=null;
+		}
+
+		rs.close();
+		inst.close();
+		conn.close();
+		return retour;
+	}
+
 }

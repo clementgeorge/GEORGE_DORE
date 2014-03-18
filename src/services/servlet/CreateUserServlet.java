@@ -51,7 +51,7 @@ public class CreateUserServlet extends HttpServlet {
 			AuthentificationTools.createUser(login, pass, prenom, nom);
 			JSONObject retour=new JSONObject();
 			int id_user=AuthentificationTools.getIDUser(login);
-			SessionTools.insertSession();
+			SessionTools.insertSession(id_user);
 			String key=ServicesTools.insertSession(id_user,false);
 			retour.put("key", key);
 			out.print(retour.toString());

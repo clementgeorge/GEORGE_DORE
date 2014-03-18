@@ -26,9 +26,9 @@ public class SessionTools {
 
 	}
 
-	public static void insertSession() {
+	public static void insertSession(int IdUser) {
 		try {
-			DatabaseTools.insertSessionDB();
+			DatabaseTools.insertSessionDB(IdUser);
 		} catch (SQLException | MySqlConnexionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
