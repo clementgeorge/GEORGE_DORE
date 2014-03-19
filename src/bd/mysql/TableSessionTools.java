@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import bd.Database;
 import bd.DatabaseTools;
-import bd.MySqlConnexionException;
+import bd.exceptions.MySqlConnexionException;
 
 public class TableSessionTools {
 

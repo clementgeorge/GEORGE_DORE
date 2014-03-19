@@ -3,7 +3,7 @@ package services;
 import java.sql.SQLException;
 
 import bd.DatabaseTools;
-import bd.MySqlConnexionException;
+import bd.exceptions.MySqlConnexionException;
 
 public class SessionTools {
 	public static boolean isSession(String key) {

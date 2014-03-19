@@ -4,6 +4,9 @@ import java.net.UnknownHostException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import bd.exceptions.MongoDBConnexionException;
+import bd.exceptions.MySqlConnexionException;
+
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.Mongo;

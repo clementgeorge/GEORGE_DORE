@@ -10,15 +10,15 @@ import com.mongodb.DBObject;
 
 import bd.Database;
 import bd.DatabaseTools;
-import bd.MongoDBConnexionException;
-import bd.MySqlConnexionException;
+import bd.exceptions.MongoDBConnexionException;
+import bd.exceptions.MySqlConnexionException;
 
 /**
  * 
  * Contient les méthodes pour ajouter des tweets dans la base de donnée
  *
  */
-public class TweetsTools {
+public class TableTweetTools {
 	private static String bd = "tweet";
 	
 	/**
@@ -31,7 +31,7 @@ public class TweetsTools {
 	 * @throws MySqlConnexionException 
 	 * @throws BDException
 	 */
-	public static void posterMessage(String sessionkey, String message) throws MongoDBConnexionException, MySqlConnexionException, SQLException{
+	public static void addTweet(String sessionkey, String message) throws MongoDBConnexionException, MySqlConnexionException, SQLException{
 		GregorianCalendar calendar = new GregorianCalendar();
 		Date date = calendar.getTime();
 

@@ -17,6 +17,10 @@
 		<servlet-class>services.servlet.LoginServlet</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>AddTweetServlet</servlet-name>
+		<servlet-class>services.servlet.AddTweetServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>CreateUserServlet</servlet-name>
 		<servlet-class>services.servlet.CreateUserServlet</servlet-class>
 	</servlet>
@@ -27,6 +31,10 @@
 	<servlet-mapping>
 		<servlet-name>LogoutServlet</servlet-name>
 		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddTweetServlet</servlet-name>
+		<url-pattern>/addtweet</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>

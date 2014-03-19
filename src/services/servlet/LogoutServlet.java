@@ -17,16 +17,17 @@ public class LogoutServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-		String key=req.getParameter("key");
+		
 
 		PrintWriter out= resp.getWriter();
 		resp.setContentType("text/plain");
 
-		if(key == null){
+		if(!req.getParameterMap().containsKey("key")){
 			out.print(ServicesTools.error("Missing parameter in LogoutServlet", 0).toString());
 			return;
 
-		}	
+		}
+		String key=req.getParameter("key");
 
 		JSONObject retour=ServicesTools.Logout(key);
 		out.print(retour.toString());

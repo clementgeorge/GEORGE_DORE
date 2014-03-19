@@ -1,4 +1,4 @@
-package bd;
+package bd.exceptions;
 
 public class MongoDBConnexionException extends Exception {
 

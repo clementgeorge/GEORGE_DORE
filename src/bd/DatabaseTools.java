@@ -2,6 +2,9 @@ package bd;
 
 import java.sql.SQLException;
 
+import bd.exceptions.MongoDBConnexionException;
+import bd.exceptions.MySqlConnexionException;
+import bd.mongodb.TableTweetTools;
 import bd.mysql.TableLoginTools;
 import bd.mysql.TableSessionTools;
 
@@ -121,5 +124,17 @@ public class DatabaseTools {
 	 */
 	public static String getLoginDB(int IdUser) throws MySqlConnexionException, SQLException {
 		return TableLoginTools.getLogin(IdUser);
+	}
+	
+	/**
+	 * Permet à l'utilisateur de la session active de 'tweeter'
+	 * @param sessionkey la clé de session
+	 * @param message Le message à tweeter
+	 * @throws MongoDBConnexionException
+	 * @throws MySqlConnexionException
+	 * @throws SQLException
+	 */
+	public static void addTweet(String sessionkey,String message) throws MongoDBConnexionException, MySqlConnexionException, SQLException{
+		TableTweetTools.addTweet(sessionkey, message);
 	}
 }

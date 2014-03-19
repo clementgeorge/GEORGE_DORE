@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import bd.Database;
-import bd.MySqlConnexionException;
+import bd.exceptions.MySqlConnexionException;
 
 public class TableLoginTools {
 

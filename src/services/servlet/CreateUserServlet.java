@@ -18,46 +18,49 @@ import services.SessionTools;
 public class CreateUserServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 11;
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		PrintWriter out= resp.getWriter();
 		resp.setContentType("text/plain");
-		
+
 		Map<String, String[]> arguments=req.getParameterMap();
-		
+
 		if(!arguments.containsKey("login") ||
 				!arguments.containsKey("password") ||
 				!arguments.containsKey("nom") ||
 				!arguments.containsKey("prenom")){
 			out.print(ServicesTools.error("Missing parameter(s) in CreateUserServlet", 0).toString());
 			return;
-			
+
 		}
-		
+
 		String login=req.getParameter("login");
 		String pass=req.getParameter("password");
 		String prenom=req.getParameter("nom");
 		String nom=req.getParameter("prenom");
-		
-		
-		
-		try{
-			boolean is_user=AuthentificationTools.userExists(login);
-			if(is_user){
-				out.print(ServicesTools.error("L'utilisateur existe deja", 1).toString());
+
+
+
+
+		boolean is_user=AuthentificationTools.userExists(login);
+		if(is_user){
+			out.print(ServicesTools.error("L'utilisateur existe deja", 1).toString());
 			return;
-			}
-			AuthentificationTools.createUser(login, pass, prenom, nom);
-			JSONObject retour=new JSONObject();
-			int id_user=AuthentificationTools.getIDUser(login);
-			SessionTools.insertSession(id_user);
-			String key=ServicesTools.insertSession(id_user,false);
-			retour.put("key", key);
-			out.print(retour.toString());
-			return;
-		}catch(JSONException e){
-			
 		}
+		AuthentificationTools.createUser(login, pass, prenom, nom);
+		JSONObject retour=new JSONObject();
+		int id_user=AuthentificationTools.getIDUser(login);
+		SessionTools.insertSession(id_user);
+		String key=ServicesTools.insertSession(id_user,false);
+		try {
+			retour.put("key", key);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		out.print(retour.toString());
+		return;
+
 	}
 }
