@@ -1,19 +1,15 @@
 <!doctype html>
 <html>
 <head>
-<title>Comments</title>
+<title>Connexion</title>
 <link href="macss.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="connexion.js"></script>
 </head>
 <body>
-	<script type="text/javascript">
-		f = function() {
-			alert("alert");
-			return;
-		}
-	</script>
 	<div id="main">
 		<h1>Ouvrir la session</h1>
-		<form action="javascript:(function(){return;})()" method="get">
+		<form action="" method="get" OnSubmit="javascript:connexion(this);return false;">
 			<div class="ids">
 				<span> Login</span> <input type=text name="login" />
 			</div>
@@ -21,7 +17,7 @@
 				<span> Password</span> <input type="password" name="pass" />
 			</div>
 			<div class="button">
-				<input type="submit" value="Connexion" /> 
+				<input type="submit" value="Connexion"/> 
 				<input type="button"
 					value="Annuler" Onclick="window.location.href='main.html'" />
 			</div>

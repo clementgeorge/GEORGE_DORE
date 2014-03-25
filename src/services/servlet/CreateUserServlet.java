@@ -37,22 +37,22 @@ public class CreateUserServlet extends HttpServlet {
 
 		String login=req.getParameter("login");
 		String pass=req.getParameter("password");
-		String prenom=req.getParameter("nom");
-		String nom=req.getParameter("prenom");
+		String prenom=req.getParameter("prenom");
+		String nom=req.getParameter("nom");
 
 
 
 
 		boolean is_user=AuthentificationTools.userExists(login);
 		if(is_user){
-			out.print(ServicesTools.error("L'utilisateur existe deja", 1).toString());
+			out.print(ServicesTools.error("Ce login est deja utilise", 1).toString());
 			return;
 		}
 		AuthentificationTools.createUser(login, pass, prenom, nom);
 		JSONObject retour=new JSONObject();
 		int id_user=AuthentificationTools.getIDUser(login);
 		SessionTools.insertSession(id_user);
-		String key=ServicesTools.insertSession(id_user,false);
+		int key=SessionTools.getKeySession(id_user);
 		try {
 			retour.put("key", key);
 		} catch (JSONException e) {

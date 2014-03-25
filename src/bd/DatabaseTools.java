@@ -88,8 +88,8 @@ public class DatabaseTools {
 	 * @throws SQLException
 	 * @throws MySqlConnexionException
 	 */
-	public static void insertSessionDB(int IdUser) throws SQLException, MySqlConnexionException {
-		TableSessionTools.insertSessionDB(IdUser);
+	public static void insertSessionDB(int idUser) throws SQLException, MySqlConnexionException {
+		TableSessionTools.insertSessionDB(idUser);
 		
 	}
 
@@ -100,8 +100,8 @@ public class DatabaseTools {
 	 * @throws MySqlConnexionException
 	 * @throws SQLException
 	 */
-	public static int getIdOfSessionDB(String sessionkey) throws MySqlConnexionException, SQLException {
-		return TableSessionTools.getId(sessionkey);
+	public static int getIdOfSessionDB(String sessionKey) throws MySqlConnexionException, SQLException {
+		return TableSessionTools.getId(sessionKey);
 	}
 
 	/**
@@ -111,8 +111,8 @@ public class DatabaseTools {
 	 * @throws MySqlConnexionException
 	 * @throws SQLException
 	 */
-	public static String getLoginOfSessionDB(String sessionkey) throws MySqlConnexionException, SQLException {
-		return TableSessionTools.getLogin(sessionkey);
+	public static String getLoginOfSessionDB(String sessionKey) throws MySqlConnexionException, SQLException {
+		return TableSessionTools.getLogin(sessionKey);
 	}
 
 	/**
@@ -122,8 +122,8 @@ public class DatabaseTools {
 	 * @throws MySqlConnexionException
 	 * @throws SQLException
 	 */
-	public static String getLoginDB(int IdUser) throws MySqlConnexionException, SQLException {
-		return TableLoginTools.getLogin(IdUser);
+	public static String getLoginDB(int idUser) throws MySqlConnexionException, SQLException {
+		return TableLoginTools.getLogin(idUser);
 	}
 	
 	/**
@@ -136,5 +136,9 @@ public class DatabaseTools {
 	 */
 	public static void addTweet(String sessionkey,String message) throws MongoDBConnexionException, MySqlConnexionException, SQLException{
 		TableTweetTools.addTweet(sessionkey, message);
+	}
+
+	public static int getKeySession(int iDUser) throws MySqlConnexionException, SQLException {
+		return TableSessionTools.getKey(iDUser);
 	}
 }

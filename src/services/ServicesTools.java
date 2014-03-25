@@ -8,7 +8,7 @@ public class ServicesTools {
 	public static JSONObject error(String message,int code){
 		JSONObject retour=new JSONObject();
 		try {
-			retour.put("message", message);
+			retour.put("error", message);
 			retour.put("code", code);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

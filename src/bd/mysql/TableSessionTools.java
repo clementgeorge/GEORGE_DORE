@@ -14,6 +14,8 @@ public class TableSessionTools {
 	/**
 	 * Crée la session de l'utilisateur
 	 * @param IDUser l'id de l'utilisateur
+	 * @return 
+	 * @return 
 	 * @throws SQLException
 	 * @throws MySqlConnexionException
 	 */
@@ -76,6 +78,27 @@ public class TableSessionTools {
 		inst.close();
 		conn.close();
 		return retour;
+	}
+	
+	public static int getKey(int IDUser) throws MySqlConnexionException, SQLException {
+		return 22;/*Connection conn=Database.getMySQLConnection();
+		Statement inst=conn.createStatement();
+		String query="SELECT clef FROM session WHERE id=\'"+IDUser+"\';";
+		inst.executeQuery(query);
+		ResultSet rs=inst.getResultSet();
+		int retour;
+		
+		if(rs.next()){
+			retour= rs.getInt(1);
+		}
+		else{
+			retour=-1;
+		}
+
+		rs.close();
+		inst.close();
+		conn.close();
+		return retour;*/
 	}
 
 	public static String getLogin(String sessionkey) throws MySqlConnexionException, SQLException {

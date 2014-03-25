@@ -34,4 +34,14 @@ public class SessionTools {
 			e.printStackTrace();
 		}
 	}
+
+	public static int getKeySession(int IDUser) {
+		try {
+			return DatabaseTools.getKeySession(IDUser);
+		} catch (MySqlConnexionException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+	}
 }

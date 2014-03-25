@@ -1,3 +1,8 @@
+
+.actionlog{
+	
+}
+
 #main{
 	width:350px;
 	margin-left:30%;
@@ -25,3 +30,11 @@ form{
 input [value="Annuler"]{
 	margin-left:10%
 }
+
+span{
+	margin_right:20px;
+}
+
+
+
+
