@@ -2,6 +2,9 @@ package bd;
 
 import java.sql.SQLException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import bd.exceptions.MongoDBConnexionException;
 import bd.exceptions.MySqlConnexionException;
 import bd.mongodb.TableTweetTools;
@@ -138,7 +141,24 @@ public class DatabaseTools {
 		TableTweetTools.addTweet(sessionkey, message);
 	}
 
+	/**
+	 * Renvoit la clé de session de l'utilisateur donné en paramètre
+	 * @param iDUser l'identifiant de l'utilisateur
+	 * @return l'entier correspondant à la clef
+	 * @throws MySqlConnexionException
+	 * @throws SQLException
+	 */
 	public static int getKeySession(int iDUser) throws MySqlConnexionException, SQLException {
 		return TableSessionTools.getKey(iDUser);
+	}
+	
+	/**
+	 * Renvoit tous les tweets de la base de donnée mongo
+	 * @return un JSONObject de la forme {"tweet 1":"message1";"tweet 2:" ...}
+	 * @throws MongoDBConnexionException 
+	 * @throws JSONException 
+	 */
+	public static JSONObject getAllTweets() throws MongoDBConnexionException, JSONException{
+		return TableTweetTools.getAllTweets();
 	}
 }

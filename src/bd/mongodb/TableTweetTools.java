@@ -4,8 +4,12 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 import bd.Database;
@@ -44,5 +48,25 @@ public class TableTweetTools {
 		obj.put("text", message);
 
 		coll.insert(obj);
+	}
+	
+	/**
+	 * Renvoit tous les tweets de la base de donnée mongo
+	 * @return un JSONObject de la forme {"tweet 1":"message1";"tweet 2:" ...}
+	 * @throws MongoDBConnexionException 
+	 * @throws JSONException 
+	 */
+	public static JSONObject getAllTweets() throws MongoDBConnexionException, JSONException{
+		DBCollection coll = Database.getMongoCollection(bd);
+		DBCursor c = coll.find();
+
+		JSONObject js = new JSONObject();
+		int i = 0;
+		while (c.hasNext()) {
+			DBObject o = c.next();
+			js.put("tweet " + i, new JSONObject(o.toString()));
+			i++;
+		}
+		return js;
 	}
 }

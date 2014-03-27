@@ -24,6 +24,10 @@
 		<servlet-name>CreateUserServlet</servlet-name>
 		<servlet-class>services.servlet.CreateUserServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>SearchServlet</servlet-name>
+		<servlet-class>services.servlet.SearchServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CreateUserServlet</servlet-name>
 		<url-pattern>/createUser</url-pattern>
@@ -43,5 +47,9 @@
 	<servlet-mapping>
 		<servlet-name>SumServlet</servlet-name>
 		<url-pattern>/som</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SearchServlet</servlet-name>
+		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
 </web-app>

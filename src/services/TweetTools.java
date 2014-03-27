@@ -2,6 +2,9 @@ package services;
 
 import java.sql.SQLException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import bd.DatabaseTools;
 import bd.exceptions.MongoDBConnexionException;
 import bd.exceptions.MySqlConnexionException;
@@ -15,6 +18,16 @@ public class TweetTools {
 				| SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public static JSONObject getAllTweets(){
+		try {
+			return DatabaseTools.getAllTweets();
+		} catch (MongoDBConnexionException | JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new JSONObject();
 		}
 	}
 }
