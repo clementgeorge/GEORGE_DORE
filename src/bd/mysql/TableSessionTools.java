@@ -12,7 +12,7 @@ import bd.exceptions.MySqlConnexionException;
 public class TableSessionTools {
 
 	/**
-	 * CrŽe la session de l'utilisateur
+	 * Crï¿½e la session de l'utilisateur
 	 * @param IDUser l'id de l'utilisateur
 	 * @return 
 	 * @return 
@@ -81,7 +81,7 @@ public class TableSessionTools {
 	}
 	
 	public static int getKey(int IDUser) throws MySqlConnexionException, SQLException {
-		return 22;/*Connection conn=Database.getMySQLConnection();
+		Connection conn=Database.getMySQLConnection();
 		Statement inst=conn.createStatement();
 		String query="SELECT clef FROM session WHERE id=\'"+IDUser+"\';";
 		inst.executeQuery(query);
@@ -98,7 +98,7 @@ public class TableSessionTools {
 		rs.close();
 		inst.close();
 		conn.close();
-		return retour;*/
+		return retour;
 	}
 
 	public static String getLogin(String sessionkey) throws MySqlConnexionException, SQLException {

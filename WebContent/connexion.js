@@ -22,7 +22,7 @@ function verif_forme(login,password){
 }
 
 /**
- * Affiche les messages d'erreur direction dans la fenêtre
+ * Affiche les messages d'erreur direction dans la fenÔøΩtre
  * @param msg 
  */
 
@@ -60,7 +60,7 @@ function traiteReponseConnexion(reponse) {
 	if(reponse.error != undefined){
 		func_erreur(reponse.error);
 	}else{
-		window.location.href= 'main.html?key=' + reponse.key;
+		window.location.href= 'main.jsp?key=' + reponse.key +'&login='+ reponse.login + '&id=' +reponse.id;
 	}
 }
 

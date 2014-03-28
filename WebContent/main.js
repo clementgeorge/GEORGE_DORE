@@ -1,9 +1,17 @@
-function main(){
+function main(id,login,key){
 	environnement = new Object();
 	environnement.users=[];
+	if((id!=undefined) && (login!=undefined) && (key!=undefined)){
+		environnement.actif=new user(id,login);
+		environnement.key=key;
+		/*gererDivConnexion();*/
+	}
+	search();
+	/*$("#disconnect").click(disconnect);
+	$("#box_friends").click(func_filtre);*/
 }
 
-function user(id,login,password){
+function user(id,login){
 	this.id=id;
 	this.login=login;
 	this.contact=false;
@@ -22,6 +30,8 @@ function user(id,login,password){
 		this.contact=!this.contact;
 	}
 }
+
+function search(){};
 
 function Commentaire(id,auteur,texte,data,score){
 	this.id=id;
@@ -105,5 +115,20 @@ function RechercheCommentaire(resultat, recherche, contact_online, auteur, date)
 			alert(obj.erreur);
 		}
 	}
+}
+
+function search(){
+	/*var friend=($("#boxfriends").get(0).checked)?1:0;
+	var query=($("#requete").val());*/
+	$.ajax({
+		type : "get",
+		url : "search",
+		dataType : "JSON",
+		success : rechercheCommentaire.traiteReponsesJSON,
+		error : function(XHR, testStatus, errorThrown) {
+			alert(XHR + "" + testStatus + "" + errorThrown);
+		}
+	});
+	
 }
 

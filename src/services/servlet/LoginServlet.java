@@ -48,6 +48,8 @@ public class LoginServlet extends HttpServlet {
 			JSONObject retour=new JSONObject();
 			int key=SessionTools.getKeySession(id_user);
 			retour.put("key", key);
+			retour.put("login", login);
+			retour.put("id", id_user);
 			out.print(retour.toString());
 			
 			
