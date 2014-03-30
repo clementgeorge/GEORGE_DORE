@@ -1,27 +1,48 @@
 
-.actionlog{
-	
+body {
+	background: #1C1C1C;
+	color: #444;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	margin:0;
+	padding:0;
+}
+
+#titre {
+	font-size: 40px;
+	color: #B8DA40;
+	margin:0;
+}
+
+#connectlog{
+	color: #00C0FF;
+	text-decoration: none;
+}
+
+#connectlog>a{
+	color: #00C0FF;
+	text-decoration: none;
 }
 
 #main{
-	width:350px;
-	margin-left:30%;
+	position:relative;
+	margin:auto;
+	color: #d5d5d5;
+	width: 500px;
+	margin-top:80px;
+	margin-bottom:200px;
 }
 .ids{
-	margin-top:30px;
-	margin-left:20px;
-	position:relative;
+	color: #00C0FF;
+	text-decoration: none;
 }
 .ids > input{
-	position:absolute;
-	left:30%;
-	width:60%;
-	border:solid;
+	float:right;
+	width: 30%;
+	margin: 0 30% 0 4%;
+	display: inline-block;
 }
-form{
-	border:solid;
-	box-shadow:2px 2px 5px black;
-}
+
 .button{
 	margin-top:30px;
 	margin-left:50px;

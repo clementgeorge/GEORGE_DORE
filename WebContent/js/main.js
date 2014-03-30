@@ -2,31 +2,24 @@ function main(id,login,key){
 	environnement = new Object();
 	environnement.users=[];
 	if((id!=undefined) && (login!=undefined) && (key!=undefined)){
-		environnement.actif=new user(id,login);
+		environnement.actif=new User(id,login);
 		environnement.key=key;
-		/*gererDivConnexion();*/
 	}
-	search();
-	/*$("#disconnect").click(disconnect);
-	$("#box_friends").click(func_filtre);*/
+	gererDivConnexion();
+	//search();
+	//$("#disconnect").click(disconnect);
+	//$("#box_friends").click(func_filtre);
 }
 
-function user(id,login){
-	this.id=id;
-	this.login=login;
-	this.contact=false;
+function User(id, login, contact) {
+	this.id = id;
+	this.login = login;
 	if(contact!=undefined){
-		this.contact=contact;
+		this.contact = contact;
 	}
-	if(environnement==undefined){
-		environnement=new Object();
-		environnement.users=[];
-	}
-	environnement.users[this.id]=this;
+	environnement.users[id] = this;
 
-
-
-	user.prototype.modifStatus=function(){
+	User.prototype.modifStatus=function(){
 		this.contact=!this.contact;
 	}
 }
@@ -82,7 +75,7 @@ function RechercheCommentaire(resultat, recherche, contact_online, auteur, date)
 				r= new RechercheCommentaire(value.resultat,value.recherche,value.date,value.auteur);
 			}
 			else{
-				r=new Obejct();
+				r=new Object();
 				r.erreur=value.erreur;
 			}
 			return r;
@@ -130,5 +123,30 @@ function search(){
 		}
 	});
 	
+}
+
+function gererDivConnexion(){
+	var user =environnement.actif;
+	if((user!=undefined) && (user.login!="")){
+		$('#connectlog').html("<span id=\"login\">"+user.login+"</span> <span id=\"disconnect\" style=\"display:none;\">Deconnexion</span>");
+		$('#disconnect').css({
+			"color" : "red"
+		});
+		$( document ).on('click', '#login', GererBoutonDisconnect);
+		$( document ).on('click', '#disconnect', deconnexion);
+	}
+	else{
+		$('#connectlog').html("<a href=\"login.html\"id=\"connexion.link\">Connexion</a> / <a href=\"register.html\"id=\"enregistrement.link\">Enregistrement</a>");
+	}
+}
+
+function GererBoutonDisconnect(){
+	var hid=document.getElementById('disconnect').style.display;
+	if(hid=='none'){
+		document.getElementById('disconnect').style.display='inline';
+	}
+	else{
+		document.getElementById('disconnect').style.display='none';
+	}
 }
 
