@@ -55,6 +55,8 @@ public class CreateUserServlet extends HttpServlet {
 		int key=SessionTools.getKeySession(id_user);
 		try {
 			retour.put("key", key);
+			retour.put("login", login);
+			retour.put("id", id_user);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

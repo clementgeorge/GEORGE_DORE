@@ -6,8 +6,8 @@ function main(id,login,key){
 		environnement.key=key;
 	}
 	gererDivConnexion();
-	//search();
-	//$("#disconnect").click(disconnect);
+	gererInputTweet();
+	search();
 	//$("#box_friends").click(func_filtre);
 }
 
@@ -24,90 +24,46 @@ function User(id, login, contact) {
 	}
 }
 
-function search(){};
-
-function Commentaire(id,auteur,texte,data,score){
+function Commentaire(id,login,texte,date){
 	this.id=id;
-	this.auteur=auteur;
+	this.login=login;
 	this.texte=texte;
-	this.data=data;
-	this.score=score;
-
-
+	this.date=date;
+	
 	Commentaire.prototype.getHtml= function(){
-		var s="\t <div id=\"Commentaire_"+this.id+"\ class=\"Comment\">\n";
-		s+="\t\t <div class=\"text_comment\">"+this.texte+ "</div>\n";
-		if(this.auteur.contact){
-			s+="\t <img class=\"image_"+this.auteur.id+"\" src= \"\"Images/image.jpg\" title=\"AjoutContact";
-			Onclick="\"javascript:ajout_contact("+this.auteur.id+")\"/>\n";	
+		if((environnement.actif!=undefined) && (environnement.actif.login==this.login)){
+			alert(environnement.actif.login+" "+this.login);
+			var s="<div class=\"tweet\"><ttlt2>"+this.login+"</ttlt2>"+this.texte+ "</div>";
+			return(s);
 		}
-		return(s);
+		else{
+			var s="<div class=\"tweet\"><ttlt>"+this.login+"</ttlt>"+this.texte+ "</div>";
+			return(s);
+		}
 	}
 }
 
-function RechercheCommentaire(resultat, recherche, contact_online, auteur, date){
+function RechercheCommentaire(resultat){
 	this.resultat=resultat;
-	this.auteur=auteur;
-	this.recherche=recherche;
-	if(recherche==undefined){
-		this.recherche="";
-	}
-	this.date=date;
-	if(date==undefined){
-		this.date= new Date();
-	}
-	environnement.recherche=this;
-
-
+	
 	RechercheCommentaire.prototype.getHtml=function(){
-		var s="<div id=\"commentaires\">\n";
+		var s="";
 		for (var i=0;i<this.resultat.length;i++){
 			s+=this.resultat[i].getHtml()+"\n";
 		}
-		s+="</div>";
 		return s;
 	}
+}
 
-	RechercheCommentaire.revival=function revival(key,value){
-		if(key.length ==0){
-			var r; 
-			if((value.erreur == undefined)||(value.erreur == 0)){
-				r= new RechercheCommentaire(value.resultat,value.recherche,value.date,value.auteur);
-			}
-			else{
-				r=new Object();
-				r.erreur=value.erreur;
-			}
-			return r;
-		}
-		else if (value.auteur instanceof User){
-			var c=new Commentaire(value.id,value.auteur,value.texte, value.date,value.score);
-			return c;
-		}
-		else if (key == "auteur"){
-			var a;
-			if ((environnement != undefined) && (environnement.users[value.id]!= undefined)){
-				a=environnement.users[value.id];
-			}
-			else{
-				a=new User(value.id,value.login,value.contact);
-			}
-			return a;
-		}
-		else{
-			return value;
-		}
+traiteJSONCommentaires= function(JSONobject){
+	var tweets=JSONobject.tweets;
+	var resultat=new Array();
+	for(var i=0;i<tweets.length;i++){
+		var tweet=tweets[i];
+		resultat[i]=new Commentaire(tweet.auteur_id,tweet.auteur_login,tweet.text,tweet.date);
 	}
-
-	RechercheCommentaire.traiteJSON= function(JSONtext){
-		var obj=JSON.parse(JSONtext, RechercheCommentaire.revival);
-		if(obj.erreur==undefined){
-			alert(obj.getHtml());
-		}
-		else{
-			alert(obj.erreur);
-		}
-	}
+	var rc=new RechercheCommentaire(resultat);
+	$('#tweets').append(rc.getHtml());
 }
 
 function search(){
@@ -116,8 +72,9 @@ function search(){
 	$.ajax({
 		type : "get",
 		url : "search",
+		data : "",
 		dataType : "JSON",
-		success : rechercheCommentaire.traiteReponsesJSON,
+		success : traiteJSONCommentaires,
 		error : function(XHR, testStatus, errorThrown) {
 			alert(XHR + "" + testStatus + "" + errorThrown);
 		}
@@ -128,11 +85,11 @@ function search(){
 function gererDivConnexion(){
 	var user =environnement.actif;
 	if((user!=undefined) && (user.login!="")){
-		$('#connectlog').html("<span id=\"login\">"+user.login+"</span> <span id=\"disconnect\" style=\"display:none;\">Deconnexion</span>");
+		$('#connectlog').html("<span id=\"login\">"+user.login+"</span> <a href=\"#\" id=\"disconnect\" style=\"display:none;\">Deconnexion</span>");
 		$('#disconnect').css({
-			"color" : "red"
+			"color" : "#778e8e"
 		});
-		$( document ).on('click', '#login', GererBoutonDisconnect);
+		$( document ).on('click', '#login', gererBoutonDisconnect);
 		$( document ).on('click', '#disconnect', deconnexion);
 	}
 	else{
@@ -140,7 +97,20 @@ function gererDivConnexion(){
 	}
 }
 
-function GererBoutonDisconnect(){
+function gererInputTweet(){
+	var user=environnement.actif;
+	if((user!=undefined) && (user.login!="")){
+		$('#input_tweet').css({"display":"block"});
+		$('#CommentButton').css({"display":"block"});
+	}
+	else{
+		$('#input_tweet').css({"display":"none"});
+		$('#CommentButton').css({"display":"none"});
+	}
+}
+
+
+function gererBoutonDisconnect(){
 	var hid=document.getElementById('disconnect').style.display;
 	if(hid=='none'){
 		document.getElementById('disconnect').style.display='inline';

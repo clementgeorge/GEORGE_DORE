@@ -8,28 +8,28 @@
 </head>
 <body>
 	<div id="main">
+		<div id="baniere">
 		<div id="titre">Le Jacasseur</div>
-		<div id="description">S'enregistrer</div> 
-		<form action="javascript:function(){return;}" method="get" OnSubmit="javascript:inscription(this);return false;">
+		<div id="description">S'enregistrer</div></div> 
+		<form id="registerForm" action="javascript:function(){return;}" method="get" OnSubmit="javascript:inscription(this);return false;">
 			<div class="ids">
-				<span> Prenom</span> <input type="text" name="prenom" />
+				<span>Prenom</span> <input type="text" name="prenom" />
 			</div>
 			<div class="ids">
-				<span> Nom</span> <input type="text" name="nom" />
+				<span>Nom</span> <input type="text" name="nom" />
 			</div>
 			<div class="ids">
-				<span> Login:</span> <input type="text" name="login" />
+				<span>Identifiant</span> <input type="text" name="login" />
 			</div>
 			<div class="ids">
-				<span> Mot de passe:</span> <input type="password" name="pass" />
+				<span>Mot de passe</span> <input type="password" name="pass" />
 			</div>
 			<div class="ids">
-				<span> Confirmation:</span> <input type="password" name="pass2" />
+				<span>Confirmation</span> <input type="password" name="pass2" />
 			</div>
 			<div class="button">
-				<input type="submit" value="Enregistrer"/> 
-				<input type="button"
-					value="Annuler" Onclick="window.location.href='main.jsp'" />
+				<a href="#" onClick="$('#registerForm').submit();return false;" class="myButton" id="registerButton">S'enregistrer</a>
+				<a href="main.jsp" class="myButton" id="cancelButton2">Annuler</a>
 			</div>
 		</form>
 	</div>

@@ -32,12 +32,12 @@ function func_erreur(msg) {
 	if (old_msg.length == 0) {
 		$("form").prepend(msg_box);
 		$("#msg-err-connexion").css({
-			"color" : "red"
+			"color" : "#A00327"
 		});
 	} else {
 		old_msg.replaceWith(msg_box);
 		$("#msg-err-connexion").css({
-			"color" : "red"
+			"color" : "#A00327"
 		});
 	}
 }

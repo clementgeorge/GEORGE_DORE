@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -61,12 +62,12 @@ public class TableTweetTools {
 		DBCursor c = coll.find();
 
 		JSONObject js = new JSONObject();
-		int i = 0;
+		JSONArray ar=new JSONArray();
 		while (c.hasNext()) {
 			DBObject o = c.next();
-			js.put("tweet " + i, new JSONObject(o.toString()));
-			i++;
+			ar.put(o);
 		}
+		js.put("tweets", ar);
 		return js;
 	}
 }

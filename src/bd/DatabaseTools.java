@@ -2,6 +2,7 @@ package bd;
 
 import java.sql.SQLException;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -47,12 +47,12 @@ function func_erreur(msg) {
 	if (old_msg.length == 0) {
 		$("form").prepend(msg_box);
 		$("#msg-err-connexion").css({
-			"color" : "red"
+			"color" : "#A00327"
 		});
 	} else {
 		old_msg.replaceWith(msg_box);
 		$("#msg-err-connexion").css({
-			"color" : "red"
+			"color" : "#A00327"
 		});
 	}
 }
@@ -75,7 +75,7 @@ function traiteReponseConnexion(reponse) {
 	if(reponse.error != undefined){
 		func_erreur(reponse.error);
 	}else{
-		window.location.href= 'main.html?key=' + reponse.key;
+		window.location.href= 'main.jsp?key=' + reponse.key + '&login='+ reponse.login + '&id=' +reponse.id;
 	}
 }
 

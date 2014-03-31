@@ -1,52 +1,116 @@
 
 body {
-	background: #1C1C1C;
-	color: #444;
+	background: #222d2d;	
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 20px;
 	margin:0;
 	padding:0;
+	margin:auto;
+	color: #d5d5d5;
+	margin-top:80px;
+	margin-left:80px;
 }
 
 #titre {
 	font-size: 40px;
-	color: #B8DA40;
-	margin:0;
+	color: #cae001;
 }
 
 #connectlog{
-	color: #00C0FF;
+	color: #778e8e;
 	text-decoration: none;
+}
+
+#menu{
+	width: 500px;
+	float:left;
+	padding: 0px 50px 0px 50px;
+	position:fixed;
+}
+
+#baniere{
+}
+
+#connectlog{
+	color:#778e8e;
+}
+
+#connectlog>span{
+	color:#00C0FF;
 }
 
 #connectlog>a{
-	color: #00C0FF;
+	color: #778e8e;
 	text-decoration: none;
 }
 
-#main{
-	position:relative;
-	margin:auto;
-	color: #d5d5d5;
-	width: 500px;
-	margin-top:80px;
-	margin-bottom:200px;
+#connectlog>a:hover{
+	color:#00C0FF;
 }
-.ids{
+
+#main{
+	width:500px;
+	padding: 0px 50px 0px 50px;
+}
+
+#tweets{
+	position:absolute;
+	left:680px;
+	width: 500px;
+}
+
+.tweet{
+	font-size:15px;
+	border-bottom: 1px dotted #666;
+	padding: 15px 15px 15px 15px;
+	
+}
+
+.tweet:hover{
+	background:#1C1C1C;
+}
+
+#input_tweet{
+	resize:none;
+	text-indent:5px;
+	width:100%;
+	border-radius:6px;
+	height:60px;
+	font-size:15px;
+	margin-top: 15px;
+	margin-bottom: 4px;
+	
+}
+
+
+
+
+ttlt{
+	font-size:16px;
+	color: #B8DA40;
+	display: block;
+}
+
+ttlt2{
+	font-size:16px;
 	color: #00C0FF;
+	display: block;
+}
+
+.ids{
+	width:70%;
+	color: #778e8e;
 	text-decoration: none;
 }
 .ids > input{
 	float:right;
-	width: 30%;
-	margin: 0 30% 0 4%;
+	width: 45%;
+	margin: 0 0% 0 0%;
 	display: inline-block;
+	border-radius: 4px;
 }
 
 .button{
-	margin-top:30px;
-	margin-left:50px;
-	margin-bottom:30px;
 }
 input [value="Annuler"]{
 	margin-left:10%
@@ -56,6 +120,27 @@ span{
 	margin_right:20px;
 }
 
+.myButton {
+	color: #00C0FF;
+	text-decoration: none;
+	margin-left:0px;
+	margin-right:20px;
+	
+}
+
+.myButton:hover{
+	color: #00C0FF;
+}
+
+#CommentButton:hover{
+	color: #00C0FF;
+}
+
+#CommentButton{
+	float:right;
+	color:#778e8e;
+	text-decoration: none;
+}
 
 
 

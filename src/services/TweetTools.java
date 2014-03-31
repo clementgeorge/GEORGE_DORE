@@ -2,6 +2,7 @@ package services;
 
 import java.sql.SQLException;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,9 +26,8 @@ public class TweetTools {
 		try {
 			return DatabaseTools.getAllTweets();
 		} catch (MongoDBConnexionException | JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return new JSONObject();
+			return ServicesTools.error("Requete impossible", 1);
 		}
 	}
 }
