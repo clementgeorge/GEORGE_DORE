@@ -32,12 +32,11 @@ function Commentaire(id,login,texte,date){
 	
 	Commentaire.prototype.getHtml= function(){
 		if((environnement.actif!=undefined) && (environnement.actif.login==this.login)){
-			alert(environnement.actif.login+" "+this.login);
-			var s="<div class=\"tweet\"><ttlt2>"+this.login+"</ttlt2>"+this.texte+ "</div>";
+			var s="<div class=\"tweet\"><htweet><ttlt2>"+this.login+"</ttlt2><date>"+this.date+"</date></htweet>"+this.texte+ "</div>";
 			return(s);
 		}
 		else{
-			var s="<div class=\"tweet\"><ttlt>"+this.login+"</ttlt>"+this.texte+ "</div>";
+			var s="<div class=\"tweet\"><htweet><ttlt>"+this.login+"</ttlt><date>"+this.date+"</date></htweet>"+this.texte+ "</div>";
 			return(s);
 		}
 	}
@@ -58,8 +57,9 @@ function RechercheCommentaire(resultat){
 traiteJSONCommentaires= function(JSONobject){
 	var tweets=JSONobject.tweets;
 	var resultat=new Array();
-	for(var i=0;i<tweets.length;i++){
-		var tweet=tweets[i];
+	var taille=tweets.length;
+	for(var i=0;i<taille;i++){
+		var tweet=tweets[taille-1-i];
 		resultat[i]=new Commentaire(tweet.auteur_id,tweet.auteur_login,tweet.text,tweet.date);
 	}
 	var rc=new RechercheCommentaire(resultat);
@@ -118,5 +118,31 @@ function gererBoutonDisconnect(){
 	else{
 		document.getElementById('disconnect').style.display='none';
 	}
+}
+
+function postTweet(formulaire){
+	var message=formulaire.input_tweet.value;
+	var key=environnement.key;
+	if(key==undefined){
+		return;
+	}
+	var dataf='session='+ key + '&message=' +message;
+	$.ajax({
+		type : "get",
+		url : "addtweet",
+		data : dataf,
+		dataType : "JSON",
+		success : traiteReponsePostTweet,
+		error : function(XHR, testStatus, errorThrown) {
+			alert(XHR + "" + testStatus + "" + errorThrown);
+		}
+	});
+	$("#input_tweet").val('');
+}
+
+function traiteReponsePostTweet(json){
+	if(json.error==undefined && json.tweet!=undefined);
+	var lastCom=new Commentaire(json.tweet.auteur_id,json.tweet.auteur_login,json.tweet.text,json.tweet.date);
+	$('#tweets').prepend(lastCom.getHtml());
 }
 

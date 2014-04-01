@@ -1,6 +1,7 @@
 package bd.mongodb;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -31,24 +32,31 @@ public class TableTweetTools {
 	 * 
 	 * @param sessionkey : la clé de session
 	 * @param message : le tweet
+	 * @return 
 	 * @throws MongoDBConnexionException 
 	 * @throws SQLException 
 	 * @throws MySqlConnexionException 
+	 * @throws JSONException 
 	 * @throws BDException
 	 */
-	public static void addTweet(String sessionkey, String message) throws MongoDBConnexionException, MySqlConnexionException, SQLException{
-		GregorianCalendar calendar = new GregorianCalendar();
-		Date date = calendar.getTime();
+	public static JSONObject addTweet(String sessionkey, String message) throws MongoDBConnexionException, MySqlConnexionException, SQLException, JSONException{
+		Date now=new Date();
+		SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		String s=date.format(now);
 
 		DBCollection coll = Database.getMongoCollection(bd);
 		DBObject obj = new BasicDBObject();
 
 		obj.put("auteur_id", DatabaseTools.getIdOfSessionDB(sessionkey));
 		obj.put("auteur_login", DatabaseTools.getLoginOfSessionDB(sessionkey));
-		obj.put("date", date);
+		obj.put("date", s);
 		obj.put("text", message);
 
 		coll.insert(obj);
+		JSONObject retour= new JSONObject();
+		retour.put("tweet", obj);
+		
+		return retour;
 	}
 	
 	/**

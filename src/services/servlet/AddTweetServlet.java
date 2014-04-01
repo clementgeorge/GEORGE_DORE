@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import services.ServicesTools;
 import services.SessionTools;
 import services.TweetTools;
@@ -49,8 +51,8 @@ public class AddTweetServlet extends HttpServlet{
 			return;
 		}
 		
-		TweetTools.addTweet(sessionKey, message);
-		out.print(ServicesTools.serviceAccepted());
+		JSONObject retour=TweetTools.addTweet(sessionKey, message);
+		out.print(retour.toString());
 	}
 
 }

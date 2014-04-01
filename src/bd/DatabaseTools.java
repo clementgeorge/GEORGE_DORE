@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.mongodb.DBObject;
+
 import bd.exceptions.MongoDBConnexionException;
 import bd.exceptions.MySqlConnexionException;
 import bd.mongodb.TableTweetTools;
@@ -134,12 +136,14 @@ public class DatabaseTools {
 	 * Permet à l'utilisateur de la session active de 'tweeter'
 	 * @param sessionkey la clé de session
 	 * @param message Le message à tweeter
+	 * @return 
 	 * @throws MongoDBConnexionException
 	 * @throws MySqlConnexionException
 	 * @throws SQLException
+	 * @throws JSONException 
 	 */
-	public static void addTweet(String sessionkey,String message) throws MongoDBConnexionException, MySqlConnexionException, SQLException{
-		TableTweetTools.addTweet(sessionkey, message);
+	public static JSONObject addTweet(String sessionkey,String message) throws MongoDBConnexionException, MySqlConnexionException, SQLException, JSONException{
+		return TableTweetTools.addTweet(sessionkey, message);
 	}
 
 	/**

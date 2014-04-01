@@ -85,16 +85,22 @@ body {
 
 
 
+htweet{
+	display:block;
+}
 ttlt{
 	font-size:16px;
 	color: #B8DA40;
-	display: block;
 }
 
 ttlt2{
 	font-size:16px;
 	color: #00C0FF;
-	display: block;
+}
+date{
+	font-size:13px;
+	color:#778e8e;
+	float:right;
 }
 
 .ids{

@@ -1,5 +1,8 @@
 TODO
 
--Compléter servlets et services associés aux clés de sessions
+
 -Ecrire les tableaux d'utilisations pour chaque servlets (voir TD2)
--Compléter la classe ServiceTools
+-Am�liorer le format des dates
+-ajout amis + boutons amis uniquement
+-filtrage par recherche
+
