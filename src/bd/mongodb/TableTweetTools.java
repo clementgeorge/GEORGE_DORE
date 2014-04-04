@@ -21,16 +21,16 @@ import bd.exceptions.MySqlConnexionException;
 
 /**
  * 
- * Contient les mŽthodes pour ajouter des tweets dans la base de donnŽe
+ * Contient les mï¿½thodes pour ajouter des tweets dans la base de donnï¿½e
  *
  */
 public class TableTweetTools {
 	private static String bd = "tweet";
-	
+
 	/**
 	 * Post un message dans la BD
 	 * 
-	 * @param sessionkey : la clŽ de session
+	 * @param sessionkey : la clï¿½ de session
 	 * @param message : le tweet
 	 * @return 
 	 * @throws MongoDBConnexionException 
@@ -55,13 +55,13 @@ public class TableTweetTools {
 		coll.insert(obj);
 		JSONObject retour= new JSONObject();
 		retour.put("tweet", obj);
-		
+
 		return retour;
 	}
-	
+
 	/**
-	 * Renvoit tous les tweets de la base de donnŽe mongo
-	 * @return un JSONObject de la forme {"tweet 1":"message1";"tweet 2:" ...}
+	 * Renvoit tous les tweets de la base de donnï¿½e mongo
+	 * @return un JSONObject de la forme {"tweets":[{message1},{message2}, ...}
 	 * @throws MongoDBConnexionException 
 	 * @throws JSONException 
 	 */
@@ -75,6 +75,40 @@ public class TableTweetTools {
 			DBObject o = c.next();
 			ar.put(o);
 		}
+		js.put("tweets", ar);
+		return js;
+	}
+
+	/**
+	 * Renvoit tous les tweets des amis de la clef de session correspondante
+	 * @return un JSONObject de la forme {"tweets":[{message1},{message2}, ...}
+	 * @throws MongoDBConnexionException 
+	 * @throws JSONException 
+	 */
+	public static JSONObject getAllFriendsTweets(String key) throws JSONException, MongoDBConnexionException {
+		DBCollection coll = Database.getMongoCollection(bd);
+
+		JSONObject js = new JSONObject();
+		JSONArray ar=new JSONArray();
+		js.put("tweets", ar);
+		return js;
+	}
+
+	public static JSONObject getFriendsResearchTweets(String key,
+			String recherche) throws MongoDBConnexionException, JSONException {
+		DBCollection coll = Database.getMongoCollection(bd);
+
+		JSONObject js = new JSONObject();
+		JSONArray ar=new JSONArray();
+		js.put("tweets", ar);
+		return js;
+	}
+
+	public static JSONObject getResearchTweets(String recherche) throws MongoDBConnexionException, JSONException {
+		DBCollection coll = Database.getMongoCollection(bd);
+
+		JSONObject js = new JSONObject();
+		JSONArray ar=new JSONArray();
 		js.put("tweets", ar);
 		return js;
 	}

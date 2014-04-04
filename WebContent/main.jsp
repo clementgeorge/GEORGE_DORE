@@ -38,6 +38,16 @@
 		</div>
 		</div>
 		<div id="tweets">
+		<form id="searchForm" method="get" OnSubmit="rechercher(this);">
+				<input type="text" name="recherche"/>
+			<span class="button">
+				<a href="#" id="SearchButton" onClick="$('#searchForm').submit();return false;">Rechercher</a>
+			</span>
+			<span id="box_friends_span">
+			<input type="checkbox" id="box_friends" onClick="gererCheckboxContact();" value="1">Filtrer Amis
+			</span>
+		</form>
+		<div id="tweets_list"></div>
 		</div>
 </body>
 </html>

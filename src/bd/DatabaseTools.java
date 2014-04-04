@@ -20,7 +20,7 @@ public class DatabaseTools {
 	/**
 	 * 
 	 * @param login le login de l'utilisateur
-	 * @return renvoie si l'utilisateur donn en paramtre existe
+	 * @return renvoie si l'utilisateur donnï¿½ en paramï¿½tre existe
 	 * @throws SQLException
 	 * @throws MySqlConnexionException
 	 */
@@ -29,7 +29,7 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * cre l'utilisateur dans la base de donne approprie
+	 * crï¿½e l'utilisateur dans la base de donnï¿½e appropriï¿½e
 	 * @param login
 	 * @param password
 	 * @param prenom
@@ -44,7 +44,7 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * Verifie si le mot de passe est celui associ ˆ l'utilisateur donn en parametre
+	 * Verifie si le mot de passe est celui associï¿½ ï¿½ l'utilisateur donnï¿½ en parametre
 	 * @param login
 	 * @param password
 	 * @return
@@ -56,7 +56,7 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * Renvoie l'identifiant de l'utilisateur donn en paramtre
+	 * Renvoie l'identifiant de l'utilisateur donnï¿½ en paramï¿½tre
 	 * @param login
 	 * @return
 	 * @throws SQLException
@@ -67,7 +67,7 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * Renvoie si oui ou non la cl donne en paramtre correspond ˆ une session
+	 * Renvoie si oui ou non la clï¿½ donnï¿½e en paramï¿½tre correspond ï¿½ une session
 	 * @param key
 	 * @return
 	 * @throws SQLException
@@ -78,7 +78,7 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * Supprime la session donne en parametre de la base de donne
+	 * Supprime la session donnï¿½e en parametre de la base de donnï¿½e
 	 * @param key
 	 * @throws SQLException
 	 * @throws MySqlConnexionException
@@ -89,7 +89,7 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * Cre une nouvelle session pour l'utilisateur donn en paramtre
+	 * Crï¿½e une nouvelle session pour l'utilisateur donnï¿½ en paramï¿½tre
 	 * @param IdUser l'identifiant de l'utilisateur
 	 * @throws SQLException
 	 * @throws MySqlConnexionException
@@ -100,7 +100,7 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * Retourne l'identifiant de l'utilisateur associ ˆ la session donne en paramtre
+	 * Retourne l'identifiant de l'utilisateur associï¿½ ï¿½ la session donnï¿½e en paramï¿½tre
 	 * @param sessionkey
 	 * @return
 	 * @throws MySqlConnexionException
@@ -111,7 +111,7 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * Retourne le login de l'utilisateur associ ˆ la session donne en paramtre
+	 * Retourne le login de l'utilisateur associï¿½ ï¿½ la session donnï¿½e en paramï¿½tre
 	 * @param sessionkey
 	 * @return
 	 * @throws MySqlConnexionException
@@ -122,7 +122,7 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * Retourne le login de l'utilisateur dont l'identifiant est donn en paramtre
+	 * Retourne le login de l'utilisateur dont l'identifiant est donnï¿½ en paramï¿½tre
 	 * @param IdUser l'id de l'utilisateur
 	 * @return
 	 * @throws MySqlConnexionException
@@ -133,9 +133,9 @@ public class DatabaseTools {
 	}
 	
 	/**
-	 * Permet ˆ l'utilisateur de la session active de 'tweeter'
-	 * @param sessionkey la cl de session
-	 * @param message Le message ˆ tweeter
+	 * Permet ï¿½ l'utilisateur de la session active de 'tweeter'
+	 * @param sessionkey la clï¿½ de session
+	 * @param message Le message ï¿½ tweeter
 	 * @return 
 	 * @throws MongoDBConnexionException
 	 * @throws MySqlConnexionException
@@ -147,9 +147,9 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * Renvoit la cl de session de l'utilisateur donn en paramtre
+	 * Renvoit la clï¿½ de session de l'utilisateur donnï¿½ en paramï¿½tre
 	 * @param iDUser l'identifiant de l'utilisateur
-	 * @return l'entier correspondant ˆ la clef
+	 * @return l'entier correspondant ï¿½ la clef
 	 * @throws MySqlConnexionException
 	 * @throws SQLException
 	 */
@@ -158,12 +158,48 @@ public class DatabaseTools {
 	}
 	
 	/**
-	 * Renvoit tous les tweets de la base de donne mongo
+	 * Renvoit tous les tweets de la base de donnï¿½e mongo
 	 * @return un JSONObject de la forme {"tweet 1":"message1";"tweet 2:" ...}
 	 * @throws MongoDBConnexionException 
 	 * @throws JSONException 
 	 */
 	public static JSONObject getAllTweets() throws MongoDBConnexionException, JSONException{
 		return TableTweetTools.getAllTweets();
+	}
+	
+	/**
+	 * Renvoit tous les tweets des amis de la clef de session correspondante
+	 * @param key
+	 * @return un JSONObject de la forme {"tweets":[{message1},{message2}, ...}
+	 * @throws MongoDBConnexionException 
+	 * @throws JSONException 
+	 */
+	public static JSONObject getAllFriendsTweets(String key) throws JSONException, MongoDBConnexionException {
+		return TableTweetTools.getAllFriendsTweets(key);
+	}
+
+	/**
+	 * Renvoit tous les tweets correspondant a la recherche et aux amis de la clef de session
+	 * @param key
+	 * @param recherche
+	 * @return un JSONObject de la forme {"tweets":[{message1},{message2}, ...}
+	 * @throws JSONException 
+	 * @throws MongoDBConnexionException 
+	 */
+	public static JSONObject getFriendsResearchTweets(String key,
+			String recherche) throws MongoDBConnexionException, JSONException {
+		return TableTweetTools.getFriendsResearchTweets(key,recherche);
+	}
+
+	
+	/**
+	 * Renvoit tous les tweets correspondant a la recherche donnÃ©e en paramÃ¨tre
+	 * @param recherche
+	 * @return un JSONObject de la forme {"tweets":[{message1},{message2}, ...}
+	 * @throws JSONException 
+	 * @throws MongoDBConnexionException 
+	 */
+	public static JSONObject getResearchTweets(String recherche) throws MongoDBConnexionException, JSONException {
+		return TableTweetTools.getResearchTweets(recherche);
 	}
 }

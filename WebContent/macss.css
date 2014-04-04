@@ -116,6 +116,16 @@ date{
 	border-radius: 4px;
 }
 
+#searchForm > input{
+	margin: 0 0% 0 0%;
+	width: 33%;
+	border-radius: 4px;
+}
+
+#searchForm{
+	margin-bottom: 10px;
+}
+
 .button{
 }
 input [value="Annuler"]{
@@ -146,6 +156,22 @@ span{
 	float:right;
 	color:#778e8e;
 	text-decoration: none;
+}
+
+#SearchButton{
+	color:#778e8e;
+	text-decoration: none;
+}
+#SearchButton:hover{
+	color: #00C0FF;
+}
+
+
+#box_friends_span{
+	display:none;
+	margin-left:4px;
+	float:right;
+	color:#778e8e;
 }
 
 

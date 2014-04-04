@@ -1,27 +1,23 @@
 function main(id,login,key){
 	environnement = new Object();
 	environnement.users=[];
+	environnement.onlyFriends=false;
+	environnement.recherche='';
+	
 	if((id!=undefined) && (login!=undefined) && (key!=undefined)){
 		environnement.actif=new User(id,login);
 		environnement.key=key;
 	}
 	gererDivConnexion();
+	gererCheckboxContact();
 	gererInputTweet();
 	search();
-	//$("#box_friends").click(func_filtre);
 }
 
 function User(id, login, contact) {
 	this.id = id;
 	this.login = login;
-	if(contact!=undefined){
-		this.contact = contact;
-	}
 	environnement.users[id] = this;
-
-	User.prototype.modifStatus=function(){
-		this.contact=!this.contact;
-	}
 }
 
 function Commentaire(id,login,texte,date){
@@ -63,16 +59,22 @@ traiteJSONCommentaires= function(JSONobject){
 		resultat[i]=new Commentaire(tweet.auteur_id,tweet.auteur_login,tweet.text,tweet.date);
 	}
 	var rc=new RechercheCommentaire(resultat);
-	$('#tweets').append(rc.getHtml());
+	$('#tweets_list').empty();
+	$('#tweets_list').append(rc.getHtml());
 }
 
 function search(){
-	/*var friend=($("#boxfriends").get(0).checked)?1:0;
-	var query=($("#requete").val());*/
+	var friend=environnement.onlyFriends?'ok':'';
+	var key='';
+	if(environnement.key!=undefined){
+		key=environnement.key;
+	}
+	/*var query=($("#requete").val());*/
+	var dataf='key=' + key + '&friend=' + friend +'&recherche=' +environnement.recherche;
 	$.ajax({
 		type : "get",
 		url : "search",
-		data : "",
+		data : dataf,
 		dataType : "JSON",
 		success : traiteJSONCommentaires,
 		error : function(XHR, testStatus, errorThrown) {
@@ -143,6 +145,26 @@ function postTweet(formulaire){
 function traiteReponsePostTweet(json){
 	if(json.error==undefined && json.tweet!=undefined);
 	var lastCom=new Commentaire(json.tweet.auteur_id,json.tweet.auteur_login,json.tweet.text,json.tweet.date);
-	$('#tweets').prepend(lastCom.getHtml());
+	$('#tweets_list').prepend(lastCom.getHtml());
 }
 
+function gererCheckboxContact(){
+	var user =environnement.actif;
+	if((user!=undefined) && (user.login!="")){
+		$('#box_friends_span').css({"display":"inline"});
+	}
+	else{
+		$('#box_friends_span').css({"display":"none"});
+	}
+	environnement.onlyFriends=false;
+	if($('#box_friends').get(0).checked){
+		environnement.onlyFriends=true;
+	}
+	search();
+}
+
+function rechercher(formulaire){
+	var recherche=formulaire.recherche.value;
+	environnement.recherche=recherche;
+	search();
+}
