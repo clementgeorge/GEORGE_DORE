@@ -4,11 +4,15 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.regex.Pattern;
+
+import javax.management.Query;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -106,9 +110,31 @@ public class TableTweetTools {
 
 	public static JSONObject getResearchTweets(String recherche) throws MongoDBConnexionException, JSONException {
 		DBCollection coll = Database.getMongoCollection(bd);
-
 		JSONObject js = new JSONObject();
 		JSONArray ar=new JSONArray();
+		String[] tabrecherche = recherche.split(" ");
+		if(tabrecherche.length==0){
+			return getAllTweets();
+		}
+		
+		BasicDBList and=new BasicDBList();
+		BasicDBObject query=null;
+		for(int i=0;i<tabrecherche.length;i++){
+			Pattern regex=Pattern.compile(tabrecherche[i],Pattern.CASE_INSENSITIVE);
+			and.add(new BasicDBObject("text",regex));
+			
+		}
+		query=new BasicDBObject("$and",and);
+		
+		
+		
+		DBCursor c = coll.find(query);
+		
+		while (c.hasNext()) {
+			DBObject o = c.next();
+			ar.put(o);
+		}
+		
 		js.put("tweets", ar);
 		return js;
 	}

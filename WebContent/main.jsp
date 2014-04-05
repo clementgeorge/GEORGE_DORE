@@ -1,12 +1,11 @@
 <!doctype html>
 <html>
 <head>
-<title>Accueil</title>
+<title>Le Jacasseur - Accueil</title>
 <link href="macss.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/deconnexion.js"></script>
-<script type="text/javascript" src="js/dateformat.js"></script>
 </head>
 <body>
 	<script type="text/javascript">
@@ -38,14 +37,12 @@
 		</div>
 		</div>
 		<div id="tweets">
-		<form id="searchForm" method="get" OnSubmit="rechercher(this);">
-				<input type="text" name="recherche"/>
-			<span class="button">
-				<a href="#" id="SearchButton" onClick="$('#searchForm').submit();return false;">Rechercher</a>
+		<form id="searchForm" method="get" OnSubmit="rechercher(this);return false;">
+		<span id="box_friends_span">
+			<input type="checkbox" id="box_friends" onClick="gererCheckboxContact();" value="1">Filtre Amis
 			</span>
-			<span id="box_friends_span">
-			<input type="checkbox" id="box_friends" onClick="gererCheckboxContact();" value="1">Filtrer Amis
-			</span>
+				<input type="text" name="recherche" placeholder="Recherche" onkeyup="$('#searchForm').submit();return false;">
+			
 		</form>
 		<div id="tweets_list"></div>
 		</div>

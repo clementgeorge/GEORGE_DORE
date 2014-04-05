@@ -117,8 +117,8 @@ date{
 }
 
 #searchForm > input{
-	margin: 0 0% 0 0%;
-	width: 33%;
+	width: 40%;
+	height:18px;
 	border-radius: 4px;
 }
 
@@ -156,14 +156,6 @@ span{
 	float:right;
 	color:#778e8e;
 	text-decoration: none;
-}
-
-#SearchButton{
-	color:#778e8e;
-	text-decoration: none;
-}
-#SearchButton:hover{
-	color: #00C0FF;
 }
 
 
