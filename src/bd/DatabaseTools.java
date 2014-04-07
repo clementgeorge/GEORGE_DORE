@@ -11,6 +11,7 @@ import com.mongodb.DBObject;
 import bd.exceptions.MongoDBConnexionException;
 import bd.exceptions.MySqlConnexionException;
 import bd.mongodb.TableTweetTools;
+import bd.mysql.TableFriendsTools;
 import bd.mysql.TableLoginTools;
 import bd.mysql.TableSessionTools;
 
@@ -20,7 +21,7 @@ public class DatabaseTools {
 	/**
 	 * 
 	 * @param login le login de l'utilisateur
-	 * @return renvoie si l'utilisateur donn� en param�tre existe
+	 * @return renvoie si l'utilisateur donne en parametre existe
 	 * @throws SQLException
 	 * @throws MySqlConnexionException
 	 */
@@ -29,7 +30,7 @@ public class DatabaseTools {
 	}
 
 	/**
-	 * cr�e l'utilisateur dans la base de donn�e appropri�e
+	 * cree l'utilisateur dans la base de donnee appropriee
 	 * @param login
 	 * @param password
 	 * @param prenom
@@ -159,7 +160,7 @@ public class DatabaseTools {
 	
 	/**
 	 * Renvoit tous les tweets de la base de donn�e mongo
-	 * @return un JSONObject de la forme {"tweet 1":"message1";"tweet 2:" ...}
+	 * @return un JSONObject de la forme {"tweets":[{message1},{message2}, ...}
 	 * @throws MongoDBConnexionException 
 	 * @throws JSONException 
 	 */
@@ -201,5 +202,28 @@ public class DatabaseTools {
 	 */
 	public static JSONObject getResearchTweets(String recherche) throws MongoDBConnexionException, JSONException {
 		return TableTweetTools.getResearchTweets(recherche);
+	}
+
+	/**
+	 * Cree une amitie entre deux personnes
+	 * @param key la cle de session de l'ajouteur d'ami
+	 * @param friend l'ami a ajouter
+	 * @throws SQLException 
+	 * @throws MySqlConnexionException 
+	 */
+	public static void addFriend(String key, String friend) throws MySqlConnexionException, SQLException {
+		TableFriendsTools.addFriend(key,friend);
+		
+	}
+	/**
+	 * Retourne la liste de tout les id des amis 
+	 * @param key la cle de session de la personne qui a cette liste d'amis
+	 * @return JSONObject de la forme {"friends":[id1,id2,id3,...]}
+	 * @throws JSONException 
+	 * @throws MySqlConnexionException 
+	 * @throws SQLException 
+	 */
+	public static JSONObject getAllFriends(String key) throws SQLException, MySqlConnexionException, JSONException {
+		return TableFriendsTools.getAllFriends(key);
 	}
 }

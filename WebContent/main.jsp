@@ -5,7 +5,9 @@
 <link href="macss.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/friends.js"></script>
 <script type="text/javascript" src="js/deconnexion.js"></script>
+<script type="text/javascript" src="js/commentaires.js"></script>
 </head>
 <body>
 	<script type="text/javascript">

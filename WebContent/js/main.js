@@ -1,13 +1,16 @@
 function main(id,login,key){
 	environnement = new Object();
 	environnement.users=[];
+	environnement.friends=[];
 	environnement.onlyFriends=false;
 	environnement.recherche='';
 	
 	if((id!=undefined) && (login!=undefined) && (key!=undefined)){
 		environnement.actif=new User(id,login);
 		environnement.key=key;
+		initialiseListeFriends();
 	}
+	
 	gererDivConnexion();
 	gererCheckboxContact();
 	gererInputTweet();
@@ -20,69 +23,7 @@ function User(id, login, contact) {
 	environnement.users[id] = this;
 }
 
-function Commentaire(id,login,texte,date){
-	this.id=id;
-	this.login=login;
-	this.texte=texte;
-	this.date=date;
-	
-	Commentaire.prototype.getHtml= function(){
-		if((environnement.actif!=undefined) && (environnement.actif.login==this.login)){
-			var s="<div class=\"tweet\"><htweet><ttlt2>"+this.login+"</ttlt2><date>"+this.date+"</date></htweet>"+this.texte+ "</div>";
-			return(s);
-		}
-		else{
-			var s="<div class=\"tweet\"><htweet><ttlt>"+this.login+"</ttlt><date>"+this.date+"</date></htweet>"+this.texte+ "</div>";
-			return(s);
-		}
-	}
-}
-
-function RechercheCommentaire(resultat){
-	this.resultat=resultat;
-	
-	RechercheCommentaire.prototype.getHtml=function(){
-		var s="";
-		for (var i=0;i<this.resultat.length;i++){
-			s+=this.resultat[i].getHtml()+"\n";
-		}
-		return s;
-	}
-}
-
-traiteJSONCommentaires= function(JSONobject){
-	var tweets=JSONobject.tweets;
-	var resultat=new Array();
-	var taille=tweets.length;
-	for(var i=0;i<taille;i++){
-		var tweet=tweets[taille-1-i];
-		resultat[i]=new Commentaire(tweet.auteur_id,tweet.auteur_login,tweet.text,tweet.date);
-	}
-	var rc=new RechercheCommentaire(resultat);
-	$('#tweets_list').empty();
-	$('#tweets_list').append(rc.getHtml());
-}
-
-function search(){
-	var friend=environnement.onlyFriends?'ok':'';
-	var key='';
-	if(environnement.key!=undefined){
-		key=environnement.key;
-	}
-	/*var query=($("#requete").val());*/
-	var dataf='key=' + key + '&friend=' + friend +'&recherche=' +environnement.recherche;
-	$.ajax({
-		type : "get",
-		url : "search",
-		data : dataf,
-		dataType : "JSON",
-		success : traiteJSONCommentaires,
-		error : function(XHR, testStatus, errorThrown) {
-			alert(XHR + "" + testStatus + "" + errorThrown);
-		}
-	});
-	
-}
+// Gere l'affichage de "Connexion/Deconnexion"
 
 function gererDivConnexion(){
 	var user =environnement.actif;
@@ -99,6 +40,8 @@ function gererDivConnexion(){
 	}
 }
 
+// Gere l'affichage tu textarea pour noter les tweets
+
 function gererInputTweet(){
 	var user=environnement.actif;
 	if((user!=undefined) && (user.login!="")){
@@ -111,6 +54,7 @@ function gererInputTweet(){
 	}
 }
 
+//Gere l'affichage du bouton deconnexion (affiche lors du clic sur le nom de l'utilisateur)
 
 function gererBoutonDisconnect(){
 	var hid=document.getElementById('disconnect').style.display;
@@ -121,6 +65,8 @@ function gererBoutonDisconnect(){
 		document.getElementById('disconnect').style.display='none';
 	}
 }
+
+// Post un tweet, formulaire correspond au form dans main.jsp qui a Onsubmit:postTweet
 
 function postTweet(formulaire){
 	var message=formulaire.input_tweet.value;
@@ -148,6 +94,7 @@ function traiteReponsePostTweet(json){
 	$('#tweets_list').prepend(lastCom.getHtml());
 }
 
+// Affiche une checkBox "Filtre Amis" sur les tweets, si l'utilisateur est connecte 
 function gererCheckboxContact(){
 	var user =environnement.actif;
 	if((user!=undefined) && (user.login!="")){
@@ -163,8 +110,11 @@ function gererCheckboxContact(){
 	search();
 }
 
+// Fonction de recherche 
+
 function rechercher(formulaire){
 	var recherche=formulaire.recherche.value;
 	environnement.recherche=recherche;
 	search();
 }
+

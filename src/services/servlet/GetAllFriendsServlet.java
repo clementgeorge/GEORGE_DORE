@@ -14,10 +14,10 @@ import services.FriendsTools;
 import services.ServicesTools;
 import services.SessionTools;
 
-public class AddFriendServlet extends HttpServlet{
-
-	private static final long serialVersionUID = 14;
+public class GetAllFriendsServlet extends HttpServlet{
 	
+	private static final long serialVersionUID = 16;
+
 	@Override
 	protected void doGet(HttpServletRequest req , HttpServletResponse resp)
 	throws ServletException, IOException{
@@ -27,18 +27,16 @@ public class AddFriendServlet extends HttpServlet{
 		
 		// On recupere les parametres de l'url
 		String key=req.getParameter("key");
-		String friend=req.getParameter("friend");
 
-		if(key==null || friend ==null){
-			out.print(ServicesTools.error("Manque arguments dans le Addfriends servlet", 0).toString());
+		if(key==null){
+			out.print(ServicesTools.error("Manque arguments dans le GetAllfriends servlet", 0).toString());
 			return;
 		}
 		if(!SessionTools.isSession(key)){
-			out.print(ServicesTools.error("Session inactive dans le Addfriends", 0).toString());
+			out.print(ServicesTools.error("Session inactive dans le GetAllfriends", 0).toString());
 			return;
 		}
-		JSONObject retour=FriendsTools.addFriend(key,friend);
+		JSONObject retour=FriendsTools.getAllFriends(key);
 		out.print(retour.toString());
 	}
-
 }

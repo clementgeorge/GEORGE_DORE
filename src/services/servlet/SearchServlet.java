@@ -28,23 +28,10 @@ public class SearchServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 
 		String key=req.getParameter("key");
-		String friend=req.getParameter("friend");
 		String recherche=req.getParameter("recherche");
 
-		if(key==null || friend ==null || recherche==null){
+		if(key==null || recherche==null){
 			out.print(ServicesTools.error("Manque arguments dans le search servlet", 0).toString());
-			return;
-		}
-
-		if(recherche.equals("") && !key.equals("") && !friend.equals("")){ //filtrage par amis uniquement 
-			JSONObject retour=TweetTools.getAllFriendsTweets(key);
-			out.print(retour);
-			return;
-		}
-		
-		if(!recherche.equals("") && !key.equals("") && !friend.equals("")){ //filtrage par recherche et amis
-			JSONObject retour=TweetTools.getFriendsResearchTweets(key,recherche);
-			out.print(retour);
 			return;
 		}
 		

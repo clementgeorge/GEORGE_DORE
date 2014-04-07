@@ -28,6 +28,14 @@
 		<servlet-name>SearchServlet</servlet-name>
 		<servlet-class>services.servlet.SearchServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>AddFriendServlet</servlet-name>
+		<servlet-class>services.servlet.AddFriendServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetAllFriendsServlet</servlet-name>
+		<servlet-class>services.servlet.GetAllFriendsServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CreateUserServlet</servlet-name>
 		<url-pattern>/createUser</url-pattern>
@@ -51,5 +59,13 @@
 	<servlet-mapping>
 		<servlet-name>SearchServlet</servlet-name>
 		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddFriendServlet</servlet-name>
+		<url-pattern>/addfriend</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetAllFriendsServlet</servlet-name>
+		<url-pattern>/getfriends</url-pattern>
 	</servlet-mapping>
 </web-app>

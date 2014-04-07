@@ -32,15 +32,15 @@ public class Database {
 	
 	/**
 	 * 
-	 * @param base : le nom de la collection qu'on souhaite obtenir
+	 * @param collection : le nom de la collection qu'on souhaite obtenir
 	 * @return une connection sur la collection base
 	 * @throws MongoDBConnexionException 
 	 */
-	public static DBCollection getMongoCollection(String base) throws MongoDBConnexionException {
+	public static DBCollection getMongoCollection(String collection) throws MongoDBConnexionException {
 		try {
 			Mongo m = new Mongo(DBStatic.mongo_host, DBStatic.mongo_port);
 			DB db = m.getDB(DBStatic.mongo_name);
-			DBCollection coll = db.getCollection(base);
+			DBCollection coll = db.getCollection(collection);
 			return coll;
 		} catch (UnknownHostException e) {
 			throw new MongoDBConnexionException();
