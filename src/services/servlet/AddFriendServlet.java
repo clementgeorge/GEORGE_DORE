@@ -31,11 +31,11 @@ public class AddFriendServlet extends HttpServlet{
 		String friend=req.getParameter("friend");
 
 		if(key==null || friend ==null){
-			out.print(ServicesTools.error("Manque arguments dans le Addfriends servlet", 0).toString());
+			out.print(ServicesTools.error("Manque arguments dans le Addfriend servlet", 0).toString());
 			return;
 		}
 		if(!SessionTools.isSession(key)){
-			out.print(ServicesTools.error("Session inactive dans le Addfriends", 0).toString());
+			out.print(ServicesTools.error("Session inactive dans le Addfriend", 0).toString());
 			return;
 		}
 		JSONObject retour=FriendsTools.addFriend(key,friend);

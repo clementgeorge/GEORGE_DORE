@@ -44,6 +44,36 @@ function traiteReponseAddFriend(reponse){
 	}
 }
 
+function rmFriend(formulaire){
+	var dataf='key='+ environnement.key+'&friend='+formulaire.friend.value;
+	$.ajax({
+		type : "get",
+		url : "rmfriend",
+		data : dataf,
+		dataType : "JSON",
+		success : traiteReponseRmFriend,
+		error : function(XHR, testStatus, errorThrown) {
+			alert(XHR + "" + testStatus + "" + errorThrown);
+		}
+	});
+}
+
+function traiteReponseRmFriend(reponse){
+	if(reponse.error == undefined){
+		var idFriend=reponse.friend;
+		var indiceFriend=0;
+		for(var i=0;i<environnement.friends.length;i++){
+			if(idFriend==environnement.friends[i]){
+				indiceFriend=i;
+				break;
+			}
+		}
+		environnement.friends.splice(indiceFriend,1);
+		alert("Liste d'ami:"+environnement.friends);
+		search();
+	}
+}
+
 function estAmi(id){
 	if(environnement.actif.id==id){
 		return true;

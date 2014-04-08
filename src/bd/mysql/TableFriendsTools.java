@@ -45,5 +45,17 @@ public class TableFriendsTools {
 		return retour;
 	}
 
+	public static void removeFriend(String key, String friend) throws MySqlConnexionException, SQLException {
+		Connection conn = Database.getMySQLConnection();
+		Statement inst=conn.createStatement();
+		int enleveur=DatabaseTools.getIdOfSessionDB(key);
+		int amiAenleve=DatabaseTools.getIdOfSessionDB(friend);
+		String query="DELETE FROM friends WHERE de="+enleveur+" and vers="+amiAenleve+";";
+		inst.executeUpdate(query);
+		inst.close();
+		conn.close();
+		
+	}
+
 	
 }

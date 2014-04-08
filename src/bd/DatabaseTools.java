@@ -226,4 +226,9 @@ public class DatabaseTools {
 	public static JSONObject getAllFriends(String key) throws SQLException, MySqlConnexionException, JSONException {
 		return TableFriendsTools.getAllFriends(key);
 	}
+
+	public static void removeFriend(String key, String friend) throws MySqlConnexionException, SQLException {
+		TableFriendsTools.removeFriend(key,friend);
+		
+	}
 }

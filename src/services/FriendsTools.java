@@ -31,4 +31,16 @@ public class FriendsTools {
 		}
 	}
 
+	public static JSONObject removeFriend(String key, String friend) {
+		try {
+			DatabaseTools.removeFriend(key,friend);
+			return ServicesTools.serviceAccepted();
+		} catch (MySqlConnexionException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ServicesTools.error("erreur removeFriend", 1);
+		}
+		
+	}
+
 }

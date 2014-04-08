@@ -36,6 +36,10 @@
 		<servlet-name>GetAllFriendsServlet</servlet-name>
 		<servlet-class>services.servlet.GetAllFriendsServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>RemoveFriendServlet</servlet-name>
+		<servlet-class>services.servlet.RemoveFriendServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CreateUserServlet</servlet-name>
 		<url-pattern>/createUser</url-pattern>
@@ -67,5 +71,9 @@
 	<servlet-mapping>
 		<servlet-name>GetAllFriendsServlet</servlet-name>
 		<url-pattern>/getfriends</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RemoveFriendServlet</servlet-name>
+		<url-pattern>/rmfriend</url-pattern>
 	</servlet-mapping>
 </web-app>
