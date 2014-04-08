@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import services.FriendsTools;
@@ -38,6 +39,12 @@ public class AddFriendServlet extends HttpServlet{
 			return;
 		}
 		JSONObject retour=FriendsTools.addFriend(key,friend);
+		try {
+			retour.put("friend", friend);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		out.print(retour.toString());
 	}
 

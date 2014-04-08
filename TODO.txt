@@ -2,7 +2,6 @@ TODO
 
 
 -Ecrire les tableaux d'utilisations pour chaque servlets (voir TD2)
--Améliorer le format des dates
--ajout amis + boutons amis uniquement
--filtrage par recherche
+-servlet supression
+-ajout amis et suppression
 

@@ -5,14 +5,31 @@ function Commentaire(id,login,texte,date){
 	this.date=date;
 	
 	Commentaire.prototype.getHtml= function(){
-		if((environnement.actif!=undefined) && (environnement.actif.login==this.login)){
-			var s="<div class=\"tweet\"><htweet><ttlt2>"+this.login+"</ttlt2><date>"+this.date+"</date></htweet>"+this.texte+ "</div>";
-			return(s);
-		}
-		else{
+		if(environnement.actif==undefined){
 			var s="<div class=\"tweet\"><htweet><ttlt>"+this.login+"</ttlt><date>"+this.date+"</date></htweet>"+this.texte+ "</div>";
 			return(s);
 		}
+		else if((environnement.actif!=undefined) && (environnement.actif.login==this.login)){
+			var s="<div class=\"tweet\"><htweet><ttlt2>"+this.login+"</ttlt2><date>"+this.date+"</date></htweet>"+this.texte+ "</div>";
+			return(s);
+		}
+		else if((environnement.actif!=undefined) && (estAmi(this.id))){
+			var s="<div class='tweet'><htweet><ttlt>"+this.login;
+			s+="<form id='rmFriend"+this.id+"' action='javascript:(function(){return;})()' method='get' OnSubmit='javascript:rmFriend(this);'>";
+			s+="<input type='hidden' name='friend' value='"+this.id+"'>";
+			s+="<a href='#' onClick='$('#rmFriend"+this.id+"').submit();' class='friendButton'>-</a>";
+			s+="</form></ttlt><date>"+this.date+"</date></htweet>"+this.texte+"</div>";
+			return(s);
+		
+		}
+		else{
+			var s="<div class='tweet'><htweet><ttlt>"+this.login;
+			s+="<form id='addFriend"+this.id+"' action='javascript:(function(){return;})()' method='get' OnSubmit='javascript:addFriend(this);'>";
+			s+="<input type='hidden' name='friend' value='"+this.id+"'>";
+			s+="<a href='#' onClick='$('#addFriend"+this.id+"').submit();' class='friendButton'>+</a>";
+			s+="</form></ttlt><date>"+this.date+"</date></htweet>"+this.texte+"</div>";
+			return(s);
+		}	
 	}
 }
 
@@ -40,17 +57,7 @@ function RechercheCommentaire(resultat){
 	}
 }
 
-function estAmi(id){
-	if(environnement.actif.id==id){
-		return true;
-	}
-	for(var i=0; i < environnement.friends.length; i++){
-		if(id == environnement.friends[i])
-			return true;
-	}
-	
-	return false;
-}
+
 
 traiteJSONCommentaires= function(JSONobject){
 	var tweets=JSONobject.tweets;

@@ -166,5 +166,15 @@ span{
 	color:#778e8e;
 }
 
+.friendButton{
+	color: #778e8e;
+	text-decoration: none;
+	margin-left:10px;
+}
+
+.friendButton:hover{
+	color: #00C0FF;
+}
+
 
 
