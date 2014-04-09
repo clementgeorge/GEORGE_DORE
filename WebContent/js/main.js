@@ -70,11 +70,15 @@ function gererBoutonDisconnect(){
 
 function postTweet(formulaire){
 	var message=formulaire.input_tweet.value;
+	if(message=='' || message.indexOf("#")!=-1){
+		return;
+	}
+	var message2=encode_utf8(message);
 	var key=environnement.key;
 	if(key==undefined){
 		return;
 	}
-	var dataf='session='+ key + '&message=' +message;
+	var dataf='session='+ key + '&message=' +message2;
 	$.ajax({
 		type : "get",
 		url : "addtweet",
@@ -86,6 +90,10 @@ function postTweet(formulaire){
 		}
 	});
 	$("#input_tweet").val('');
+}
+
+function encode_utf8(s) {
+	  return unescape(encodeURIComponent(s));
 }
 
 function traiteReponsePostTweet(json){

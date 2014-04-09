@@ -2,13 +2,13 @@
 <html>
 <head>
 <title>Le Jacasseur - Accueil</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="macss.css" rel="stylesheet" type="text/css">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/friends.js"></script>
-<script type="text/javascript" src="js/deconnexion.js"></script>
-<script type="text/javascript" src="js/commentaires.js"></script>
+<script type="text/javascript" src="js/main.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/friends.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/deconnexion.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/commentaires.js" charset="utf-8"></script>
 </head>
 <body>
 	<script type="text/javascript">
@@ -32,7 +32,7 @@
 				id="connexion.link">Connexion</a> / <a href="register.html"
 				id="enregistrement.link">Enregistrement</a>
 			</span>
-			<form id="postForm" action="javascript:(function(){return;})()" method="get" OnSubmit="javascript:postTweet(this);">
+			<form id="postForm" action="javascript:(function(){return;})()" method="get" OnSubmit="javascript:postTweet(this);" accept-charset="UTF-8">
 			<textarea name="input_tweet" rows="3" id="input_tweet"
 				placeholder="Tapez votre commentaire ici..."></textarea>
 			<a href="#" onClick="$('#postForm').submit();" id="CommentButton">Commenter</a>

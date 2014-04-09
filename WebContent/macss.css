@@ -132,9 +132,6 @@ input [value="Annuler"]{
 	margin-left:10%
 }
 
-span{
-	margin_right:20px;
-}
 
 .myButton {
 	color: #00C0FF;
@@ -167,6 +164,7 @@ span{
 }
 
 .friendButton{
+	font-size:18px;
 	color: #778e8e;
 	text-decoration: none;
 }

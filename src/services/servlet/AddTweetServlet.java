@@ -2,6 +2,7 @@ package services.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -50,6 +51,7 @@ public class AddTweetServlet extends HttpServlet{
 			out.print(ServicesTools.error("Empty Message",3).toString());
 			return;
 		}
+		
 		
 		JSONObject retour=TweetTools.addTweet(sessionKey, message);
 		out.print(retour.toString());
