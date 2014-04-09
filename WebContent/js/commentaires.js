@@ -15,22 +15,17 @@ function Commentaire(id,login,texte,date){
 		}
 		else if((environnement.actif!=undefined) && (estAmi(this.id))){
 			var s="<div class='tweet'>";
-			s+="<form id='rmFriend"+this.id+"' action='javascript:(function(){return;})()' method='get' OnSubmit='javascript:rmFriend(this);'>";
 			s+="<htweet><ttlt>"+this.login;
-			s+="<input type='hidden' name='friend' value='"+this.id+"'>";
-			s+="<a href='#' onClick='$('#rmFriend"+this.id+"').submit();' class='friendButton'>-</a>";
-			s+="</ttlt><date>"+this.date+"</date></htweet>"+this.texte+"</form></div>";
-			alert(s);
+			s+="<a href='#' onClick='rmFriend("+this.id+");' class='friendButton'>-</a>";
+			s+="</ttlt><date>"+this.date+"</date></htweet>"+this.texte+"</div>";
 			return(s);
 		
 		}
 		else{
 			var s="<div class='tweet'>";
-			s+="<form id='addFriend"+this.id+"' action='javascript:(function(){return;})()' method='get' OnSubmit='javascript:addFriend(this);'>";
 			s+="<htweet><ttlt>"+this.login;
-			s+="<input type='hidden' name='friend' value='"+this.id+"'>";
-			s+="<a href='#' onClick='$('#addFriend"+this.id+"').submit();' class='friendButton'>+</a>";
-			s+="</ttlt><date>"+this.date+"</date></htweet>"+this.texte+"</form></div>";
+			s+="<a href='#' onClick='addFriend("+this.id+");' class='friendButton'>+</a>";
+			s+="</ttlt><date>"+this.date+"</date></htweet>"+this.texte+"</div>";
 			return(s);
 		}	
 	}

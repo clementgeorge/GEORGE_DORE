@@ -3,6 +3,7 @@
 <head>
 <title>Le Jacasseur - Accueil</title>
 <link href="macss.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/friends.js"></script>

@@ -21,8 +21,8 @@ function traiteReponseGetFriends(reponse){
 	}
 }
 
-function addFriend(formulaire){
-	var dataf='key='+ environnement.key+'&friend='+formulaire.friend.value;
+function addFriend(idfriend){
+	var dataf='key='+ environnement.key+'&friend='+idfriend;
 	$.ajax({
 		type : "get",
 		url : "addfriend",
@@ -39,13 +39,12 @@ function traiteReponseAddFriend(reponse){
 	if(reponse.error == undefined){
 		var idFriend=reponse.friend;
 		environnement.friends.push(idFriend);
-		alert("Liste d'ami:"+environnement.friends);
 		search();
 	}
 }
 
-function rmFriend(formulaire){
-	var dataf='key='+ environnement.key+'&friend='+formulaire.friend.value;
+function rmFriend(idfriend){
+	var dataf='key='+ environnement.key+'&friend='+idfriend;
 	$.ajax({
 		type : "get",
 		url : "rmfriend",
@@ -69,7 +68,6 @@ function traiteReponseRmFriend(reponse){
 			}
 		}
 		environnement.friends.splice(indiceFriend,1);
-		alert("Liste d'ami:"+environnement.friends);
 		search();
 	}
 }
