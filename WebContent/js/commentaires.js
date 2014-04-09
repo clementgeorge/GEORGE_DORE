@@ -16,7 +16,7 @@ function Commentaire(id,login,texte,date){
 		else if((environnement.actif!=undefined) && (estAmi(this.id))){
 			var s="<div class='tweet'>";
 			s+="<htweet><ttlt>"+this.login;
-			s+="<a href='#' onClick='rmFriend("+this.id+");' class='friendButton'>-</a>";
+			s+="<a href='#' onClick='rmFriend("+this.id+");' class='friendButton' >Supprimer amis</a>";
 			s+="</ttlt><date>"+this.date+"</date></htweet>"+this.texte+"</div>";
 			return(s);
 		
@@ -24,7 +24,7 @@ function Commentaire(id,login,texte,date){
 		else{
 			var s="<div class='tweet'>";
 			s+="<htweet><ttlt>"+this.login;
-			s+="<a href='#' onClick='addFriend("+this.id+");' class='friendButton'>+</a>";
+			s+="<a href='#' onClick='addFriend("+this.id+");' class='friendButton'>Ajouter amis</a>";
 			s+="</ttlt><date>"+this.date+"</date></htweet>"+this.texte+"</div>";
 			return(s);
 		}	
@@ -66,17 +66,14 @@ traiteJSONCommentaires= function(JSONobject){
 		resultat[i]=new Commentaire(tweet.auteur_id,tweet.auteur_login,tweet.text,tweet.date);
 	}
 	var rc=new RechercheCommentaire(resultat);
+	environnement.resultatrecherche=rc;
 	$('#tweets_list').empty();
 	$('#tweets_list').append(rc.getHtml());
 }
 
 function search(){
-	var key='';
-	if(environnement.key!=undefined){
-		key=environnement.key;
-	}
-	/*var query=($("#requete").val());*/
-	var dataf='key=' + key + '&recherche=' +environnement.recherche;
+	var recherche=encode(environnement.recherche);
+	var dataf='recherche=' +recherche;
 	$.ajax({
 		type : "get",
 		url : "search",
@@ -88,4 +85,32 @@ function search(){
 		}
 	});
 	
+}
+
+//Post un tweet, formulaire correspond au form dans main.jsp qui a Onsubmit:postTweet
+
+function postTweet(formulaire){
+	var message=formulaire.input_tweet.value;
+	if(message==''){
+		return;
+	}
+	
+	messageEncode=encode(message);
+	var key=environnement.key;
+	if(key==undefined){
+		return;
+	}
+	var dataf='session='+ key + '&message=' +messageEncode;
+	alert(dataf);
+	$.ajax({
+		type : "get",
+		url : "addtweet",
+		data : dataf,
+		dataType : "JSON",
+		success : traiteReponsePostTweet,
+		error : function(XHR, testStatus, errorThrown) {
+			alert(XHR + "" + testStatus + "" + errorThrown);
+		}
+	});
+	$("#input_tweet").val('');
 }

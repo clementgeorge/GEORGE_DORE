@@ -27,10 +27,9 @@ public class SearchServlet extends HttpServlet {
 		PrintWriter out= resp.getWriter();
 		resp.setContentType("text/plain");
 
-		String key=req.getParameter("key");
 		String recherche=req.getParameter("recherche");
 
-		if(key==null || recherche==null){
+		if(recherche==null){
 			out.print(ServicesTools.error("Manque arguments dans le search servlet", 0).toString());
 			return;
 		}

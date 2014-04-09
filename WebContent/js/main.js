@@ -4,6 +4,8 @@ function main(id,login,key){
 	environnement.friends=[];
 	environnement.onlyFriends=false;
 	environnement.recherche='';
+	environnement.oldrecherche='';
+	environnement.resultatrecherche=undefined;
 	
 	if((id!=undefined) && (login!=undefined) && (key!=undefined)){
 		environnement.actif=new User(id,login);
@@ -66,34 +68,14 @@ function gererBoutonDisconnect(){
 	}
 }
 
-// Post un tweet, formulaire correspond au form dans main.jsp qui a Onsubmit:postTweet
 
-function postTweet(formulaire){
-	var message=formulaire.input_tweet.value;
-	if(message=='' || message.indexOf("#")!=-1){
-		return;
-	}
-	var message2=encode_utf8(message);
-	var key=environnement.key;
-	if(key==undefined){
-		return;
-	}
-	var dataf='session='+ key + '&message=' +message2;
-	$.ajax({
-		type : "get",
-		url : "addtweet",
-		data : dataf,
-		dataType : "JSON",
-		success : traiteReponsePostTweet,
-		error : function(XHR, testStatus, errorThrown) {
-			alert(XHR + "" + testStatus + "" + errorThrown);
-		}
-	});
-	$("#input_tweet").val('');
-}
 
-function encode_utf8(s) {
-	  return unescape(encodeURIComponent(s));
+function encode(s) {
+	 var r=unescape(encodeURIComponent(s));
+	 r=r.replace(/\?/g, "%3F");
+	 r=r.replace(/\&/g,"%26");
+	 r=r.replace(/\#/g,"%23");
+	 return r;
 }
 
 function traiteReponsePostTweet(json){
@@ -115,7 +97,11 @@ function gererCheckboxContact(){
 	if($('#box_friends').get(0).checked){
 		environnement.onlyFriends=true;
 	}
-	search();
+	$('#tweets_list').empty();
+	if(environnement.resultatrecherche==undefined){
+		search();
+	}
+	$('#tweets_list').append(environnement.resultatrecherche.getHtml());
 }
 
 // Fonction de recherche 
@@ -124,5 +110,6 @@ function rechercher(formulaire){
 	var recherche=formulaire.recherche.value;
 	environnement.recherche=recherche;
 	search();
+	environnement.oldrecherche=recherche;
 }
 

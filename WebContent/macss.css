@@ -163,8 +163,16 @@ input [value="Annuler"]{
 	color:#778e8e;
 }
 
+.tweet .friendButton{
+	display:none;
+}
+.tweet:hover .friendButton{
+	display:inline;
+}
+
 .friendButton{
-	font-size:18px;
+	margin-left:4px;
+	font-size:15px;
 	color: #778e8e;
 	text-decoration: none;
 }
