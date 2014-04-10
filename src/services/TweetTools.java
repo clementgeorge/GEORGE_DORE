@@ -32,25 +32,7 @@ public class TweetTools {
 		}
 	}
 
-	public static JSONObject getAllFriendsTweets(String key) {
-		try {
-			return DatabaseTools.getAllFriendsTweets(key);
-		} catch (JSONException | MongoDBConnexionException e) {
-			e.printStackTrace();
-			return ServicesTools.error("Requete impossible", 2);
-		}
-	}
-
-	public static JSONObject getFriendsResearchTweets(String key,
-			String recherche) {
-		try {
-			return DatabaseTools.getFriendsResearchTweets(key,recherche);
-		} catch (MongoDBConnexionException | JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return ServicesTools.error("Requete impossible", 2);
-		}
-	}
+	
 
 	public static JSONObject getResearchTweets(String recherche) {
 		try {

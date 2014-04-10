@@ -101,7 +101,6 @@ function postTweet(formulaire){
 		return;
 	}
 	var dataf='session='+ key + '&message=' +messageEncode;
-	alert(dataf);
 	$.ajax({
 		type : "get",
 		url : "addtweet",
@@ -113,4 +112,10 @@ function postTweet(formulaire){
 		}
 	});
 	$("#input_tweet").val('');
+}
+
+function traiteReponsePostTweet(json){
+	if(json.error==undefined && json.tweet!=undefined){
+		search();
+	}
 }

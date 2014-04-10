@@ -78,11 +78,7 @@ function encode(s) {
 	 return r;
 }
 
-function traiteReponsePostTweet(json){
-	if(json.error==undefined && json.tweet!=undefined);
-	var lastCom=new Commentaire(json.tweet.auteur_id,json.tweet.auteur_login,json.tweet.text,json.tweet.date);
-	$('#tweets_list').prepend(lastCom.getHtml());
-}
+
 
 // Affiche une checkBox "Filtre Amis" sur les tweets, si l'utilisateur est connecte 
 function gererCheckboxContact(){
@@ -101,7 +97,9 @@ function gererCheckboxContact(){
 	if(environnement.resultatrecherche==undefined){
 		search();
 	}
-	$('#tweets_list').append(environnement.resultatrecherche.getHtml());
+	else{
+		$('#tweets_list').append(environnement.resultatrecherche.getHtml());
+	}
 }
 
 // Fonction de recherche 

@@ -3,10 +3,7 @@ package bd.mongodb;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.regex.Pattern;
-
-import javax.management.Query;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,30 +80,7 @@ public class TableTweetTools {
 		return js;
 	}
 
-	/**
-	 * Renvoit tous les tweets des amis de la clef de session correspondante
-	 * @return un JSONObject de la forme {"tweets":[{message1},{message2}, ...}
-	 * @throws MongoDBConnexionException 
-	 * @throws JSONException 
-	 */
-	public static JSONObject getAllFriendsTweets(String key) throws JSONException, MongoDBConnexionException {
-		DBCollection coll = Database.getMongoCollection(bd);
 
-		JSONObject js = new JSONObject();
-		JSONArray ar=new JSONArray();
-		js.put("tweets", ar);
-		return js;
-	}
-
-	public static JSONObject getFriendsResearchTweets(String key,
-			String recherche) throws MongoDBConnexionException, JSONException {
-		DBCollection coll = Database.getMongoCollection(bd);
-
-		JSONObject js = new JSONObject();
-		JSONArray ar=new JSONArray();
-		js.put("tweets", ar);
-		return js;
-	}
 
 	public static JSONObject getResearchTweets(String recherche) throws MongoDBConnexionException, JSONException {
 		DBCollection coll = Database.getMongoCollection(bd);

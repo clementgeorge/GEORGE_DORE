@@ -2,11 +2,8 @@ package bd;
 
 import java.sql.SQLException;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.mongodb.DBObject;
 
 import bd.exceptions.MongoDBConnexionException;
 import bd.exceptions.MySqlConnexionException;
@@ -168,29 +165,8 @@ public class DatabaseTools {
 		return TableTweetTools.getAllTweets();
 	}
 	
-	/**
-	 * Renvoit tous les tweets des amis de la clef de session correspondante
-	 * @param key
-	 * @return un JSONObject de la forme {"tweets":[{message1},{message2}, ...}
-	 * @throws MongoDBConnexionException 
-	 * @throws JSONException 
-	 */
-	public static JSONObject getAllFriendsTweets(String key) throws JSONException, MongoDBConnexionException {
-		return TableTweetTools.getAllFriendsTweets(key);
-	}
+	
 
-	/**
-	 * Renvoit tous les tweets correspondant a la recherche et aux amis de la clef de session
-	 * @param key
-	 * @param recherche
-	 * @return un JSONObject de la forme {"tweets":[{message1},{message2}, ...}
-	 * @throws JSONException 
-	 * @throws MongoDBConnexionException 
-	 */
-	public static JSONObject getFriendsResearchTweets(String key,
-			String recherche) throws MongoDBConnexionException, JSONException {
-		return TableTweetTools.getFriendsResearchTweets(key,recherche);
-	}
 
 	
 	/**
